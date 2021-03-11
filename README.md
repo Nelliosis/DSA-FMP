@@ -9,8 +9,8 @@ The project was made to demonstrate proficiency and competence in required aspec
 
 - [Atom](https://atom.io/)
 - [Bloodshed Dev C++](https://www.bloodshed.net/)
+- [HomeBrew](https://brew.sh/)
 - Apple Clang 11, GCC 10, mingGW
-- HomeBrew
 
 ## Usage
 There is no GUI installer for this small program.
