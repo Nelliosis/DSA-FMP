@@ -1,0 +1,150 @@
+1
+Avengers: Endgame
+Sci-Fi
+Marvel Studios
+5
+
+2
+Captain Marvel
+Sci-Fi
+Marvel Studios
+5
+
+3
+Godzilla
+Sci-Fi
+Toho
+5
+
+4
+Alita: Battle Angel
+Sci-Fi
+20th Century Fox
+5
+
+5
+Star Wars: The Rise of Skywalker
+Sci-Fi
+Lucas Films
+5
+
+6
+Insidious
+Horror
+Blumhouse Productions
+5
+
+7
+Insidious: Chapter 2
+Horror
+Blumhouse Productions
+5
+
+8
+Insidious: Chapter 3
+Horror
+Blumhouse Productions
+5
+
+9
+Insidious: The Last Key
+Horror
+Blumhouse Productions
+5
+
+10
+Midsommar
+Horror
+Square Peg
+5
+
+11
+The Notebook
+Romance
+Gran Via
+5
+
+12
+A Walk to Remember
+Romance
+Warner Bros. Pictures
+5
+
+13 
+Titanic
+Romance
+Paramount Pictures
+5
+
+14
+The Fault in Our Stars
+Romance
+Fox 2000 Pictures
+5
+
+15
+To All the Boys I’ve Loved Before
+Romance
+Netflix
+5
+
+16
+John Wick Chapter 3: Parabellum
+Action
+Summit Entertainment
+5
+
+17
+Bad Boys for life
+Action
+Sony Pictures
+5
+
+18
+Spider-Man Far From Home
+Action
+Marvel Studios
+5
+
+19
+Mission: Impossible - Fallout
+Action
+Skydance Media
+5
+
+20
+Dunkirk
+Action
+Warner Bros. Pictures
+5
+
+21
+Trolls World Tour
+Comedy
+DreamWorks Animation
+5
+
+22
+Onward
+Comedy
+Walt Disney Pictures
+5
+
+23
+The Spongebob Movie: Sponge on the run
+Comedy
+Paramount animation
+5
+
+24
+Spies in Disguise
+Comedy
+Blue Sky Studios
+5
+
+25
+The Secret life of pets 2
+Comedy
+Universal Pictures
+5
+
