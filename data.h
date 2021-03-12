@@ -1,5 +1,6 @@
 #include <string>
 
+
 using namespace std;
 
 struct MovieNode
@@ -8,7 +9,7 @@ struct MovieNode
         id,
         copies;
 
-  string
+  std::string
         title,
         genre,
         prod;
@@ -24,6 +25,8 @@ public:
   bool desicion(char);
 
 };
+
+//Function Definitions
 
 bool functions::desicion(char d)
 {
