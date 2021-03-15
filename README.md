@@ -1,6 +1,6 @@
 # CCS0015 - Final Machine Problem
-Final exam for Data Structures &amp; Algorithms.
-The machine problem combines a term's worth of lessons.
+Final exam for Data Structures &amp; Algorithms.\
+The machine problem combines a term's worth of lessons.\
 
 ## Rationale
 The project was made to demonstrate proficiency and competence in required aspects of the course.
@@ -13,9 +13,9 @@ The project was made to demonstrate proficiency and competence in required aspec
 - Apple Clang 11, GCC 10, mingGW
 
 ## Usage
-There is no GUI installer for this small program.
-Download the repository and compile with any C++ compatible compiler
-Usage is entirely keyboard-based. Instructions are presented on screen.
+There is no GUI installer for this small program.\
+Download the repository and compile with any C++ compatible compiler.\
+Usage is entirely keyboard-based. Instructions are presented on screen.\
 
 ## Documentation & Report
 
@@ -23,7 +23,9 @@ Usage is entirely keyboard-based. Instructions are presented on screen.
 
 # References and Credits
 
-None for now.
+ImageGlass Photo Viewer\
+© 2010 - 2019 by Duong Dieu Phap\
+
 
 # License and Copyright
 
