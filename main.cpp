@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include <list>
 #include "data.h"
 
@@ -10,7 +11,7 @@ int main()
 cout << endl;
 
 int ch;
-char des;
+char dec;
 list<MovieNode> MovieList;
 functions caller;
 
@@ -48,6 +49,7 @@ do
     break;
 
     case 5: //Display all videos
+    	caller.display();
     break;
 
     case 6: // Check video availability
@@ -64,8 +66,8 @@ do
 
 //try again logic
 cout << "Do you want to select another choice?[Y/N]: ";
-cin >> des;
-}while(caller.desicion(des));
+cin >> dec;
+}while(caller.decision(dec));
 
   return 0;
 }
