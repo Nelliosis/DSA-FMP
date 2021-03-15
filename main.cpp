@@ -12,8 +12,10 @@ cout << endl;
 
 int ch;
 char dec;
-list<MovieNode> MovieList;
 functions caller;
+
+//converts text data into linked list
+caller.FromTextToList();
 
 do
 {//start do
