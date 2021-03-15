@@ -15,7 +15,7 @@ The project was made to demonstrate proficiency and competence in required aspec
 ## Usage
 There is no GUI installer for this small program.\
 Download the repository and compile with any C++ compatible compiler.\
-Usage is entirely keyboard-based. Instructions are presented on screen.\
+Usage is entirely keyboard-based. Instructions are presented on screen.
 
 ## Documentation & Report
 
@@ -24,7 +24,7 @@ Usage is entirely keyboard-based. Instructions are presented on screen.\
 # References and Credits
 
 ImageGlass Photo Viewer\
-© 2010 - 2019 by Duong Dieu Phap\
+© 2010 - 2019 by Duong Dieu Phap  ImageGlass is used as a unified photo viewer instead of depending on Microsoft Photos.
 
 
 # License and Copyright
