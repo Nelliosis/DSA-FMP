@@ -46,6 +46,7 @@ do
     break;
 
     case 4: //Show video details
+    	caller.displaymovieinfo();
     break;
 
     case 5: //Display all videos
