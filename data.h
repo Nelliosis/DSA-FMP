@@ -47,12 +47,28 @@ void functions::displaymovieinfo()
 	cout<< "\n\n";                //proxy endline to simulate entered Movie ID
 	
 	//call search function here
-	
 	cout<< "Video ID" << setw(13) << ": " << endl;
 	cout<< "Movie Title" << setw(10) << ": " << endl;
 	cout<< "Genre" << setw(16) << ": " << endl;
 	cout<< "Production" << setw(11) << ": " << endl;
 	cout<< "Number of Copies" << setw(5) << ": " << endl;
+	string filename = "C:\\Users\\marbe\\Desktop\\graphics.h_test\\1.jpg";
+	
+	string cmd("start C:\\Users\\marbe\\Desktop\\graphics.h_test\\ImageGlass_8.0.12.8_x64\\ImageGlass.exe ");
+	cmd += filename;	
+
+	//Determine the OS at Runtime
+  	//To properly utilize rename file directory of image to be displayed
+	#if __APPLE__
+  	   system("open /System/Applications/Preview.app /Users/chikashoki/Documents/GitHub/Hello-Git/sched.png");
+  	#elif _WIN32
+  		  system(cmd.c_str());
+	  #elif __LINUX__
+  	    system("open /System/Applications/Preview.app /Users/chikashoki/Documents/GitHub/Hello-Git/sched.png");
+  	#else
+  	    continue;
+  	#endif
+  	
 	
 }
 
