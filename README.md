@@ -1,6 +1,6 @@
 # CCS0015 - Final Machine Problem
 Final exam for Data Structures &amp; Algorithms.\
-The machine problem combines a term's worth of lessons.\
+The machine problem combines a term's worth of lessons.
 
 ## Rationale
 The project was made to demonstrate proficiency and competence in required aspects of the course.
