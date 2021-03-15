@@ -106,9 +106,9 @@ void functions::display()
 	<< left << setw(colwidth) << "Movie Title"
 	<< left << setw(colwidth) << "Genre"
 	<< left << setw(colwidth) << "Production"
-	<< left << setw(colwidth) << "Copies\n\n";
+	<< left << setw(colwidth) << "Copies\n";
 	traverse(colwidth);
-	cout << endl;
+	cout << "\n\n";
 }
 
 
@@ -180,13 +180,14 @@ void functions::traverse(int i)
 {
     for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
     {
+        cout << endl;
         cout << setw(i) << iter->id;
         cout << setw(i) << iter->title;
         cout << setw(i) << iter->genre;
         cout << setw(i) << iter->prod;
         cout << setw(i) << iter->copies;
-        cout << endl;
+
     }
-    
+
 
 }
