@@ -32,7 +32,9 @@ public:
   void displaymovieinfo();
   void display();
   void imagehandler(string n);
+  void traverse(int i);
   void FromTextToList();
+
 };
 
 //Function Definitions
@@ -102,17 +104,11 @@ void functions::display()
 	<< left << setw(colwidth) << "Genre"
 	<< left << setw(colwidth) << "Production"
 	<< left << setw(colwidth) << "Copies\n";
-
-	//for loop for displaying (di ko pa sure pano mamodify to kasi wala pang data initialized)
-				/*for (int i=0; i < 10; i++){
-					cout << setw(colwidth) << emp[i].num;
-					cout << setw(colwidth) << emp[i].pos;
-					cout << setw(colwidth) << emp[i].dept;
-					cout << setw(colwidth) << emp[i].pr_date;
-					cout << setw(colwidth) << emp[i].net <<"\n";
-				}*/
+	traverse(colwidth);
+	
 				cout << endl;
 }
+
 
 void functions::FromTextToList()
 {
@@ -176,4 +172,18 @@ string line;
 
     else cout << "Unable to open file" << endl;
 //end of text to list function
+}
+
+void functions::traverse(int i)
+{
+    for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
+    {
+        cout << setw(i) << iter->id << endl;
+        cout << setw(i) << iter->copies << endl;
+        cout << setw(i) << iter->title << endl;
+        cout << setw(i) << iter->genre << endl;
+        cout << setw(i) << iter->prod << endl;
+        cout << endl;
+    }
+
 }
