@@ -12,7 +12,6 @@ cout << endl;
 
 int ch;
 char dec;
-list<MovieNode> MovieList;
 functions caller;
 
 do
