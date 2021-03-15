@@ -24,6 +24,7 @@ class functions
 public:
 
   bool decision(char);
+  void displaymovieinfo();
   void display();
 
 };
@@ -36,6 +37,23 @@ bool functions::decision(char d)
   return true;
   else
   return false;
+}
+
+void functions::displaymovieinfo()
+{
+
+	cout<< "<<MOVIE INFO>>\n";
+	cout<< "Enter Movie ID: ";
+	cout<< "\n\n";                //proxy endline to simulate entered Movie ID
+	
+	//call search function here
+	
+	cout<< "Video ID" << setw(13) << ": " << endl;
+	cout<< "Movie Title" << setw(10) << ": " << endl;
+	cout<< "Genre" << setw(16) << ": " << endl;
+	cout<< "Production" << setw(11) << ": " << endl;
+	cout<< "Number of Copies" << setw(5) << ": " << endl;
+	
 }
 
 void functions::display()
