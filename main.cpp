@@ -14,6 +14,9 @@ int ch;
 char dec;
 functions caller;
 
+//converts text data into linked list
+caller.FromTextToList();
+
 do
 {//start do
 
