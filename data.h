@@ -1,7 +1,10 @@
 #include <iostream>
 #include <string>
+#include <list>
 #include <iomanip>
 #include <fstream>
+#include <cstdlib>
+#include <cstring>
 
 using namespace std;
 
@@ -61,7 +64,7 @@ void functions::displaymovieinfo()
 	cout<< "Genre" << setw(16) << ": " << endl;
 	cout<< "Production" << setw(11) << ": " << endl;
 	cout<< "Number of Copies" << setw(5) << ": " << endl;
-	imagehandler(filename);
+	imagehandler(node.location);
 }
 
 void functions::imagehandler(string n)
@@ -95,18 +98,17 @@ void functions::imagehandler(string n)
 void functions::display()
 {
 	//initializes column width
-	int colwidth = 20;
+	int colwidth = 40;
 
 	//displays headers of table
-	cout<< "<<MOVIE LIST>> \n \n";
+	cout<< "<<MOVIE LIST>>\n";
 	cout<< left << setw(colwidth) << "Video ID"
 	<< left << setw(colwidth) << "Movie Title"
 	<< left << setw(colwidth) << "Genre"
 	<< left << setw(colwidth) << "Production"
-	<< left << setw(colwidth) << "Copies\n";
+	<< left << setw(colwidth) << "Copies\n\n";
 	traverse(colwidth);
-	
-				cout << endl;
+	cout << endl;
 }
 
 
@@ -117,7 +119,7 @@ string line;
 
 //determines path at runtime
   #if _WIN32
-  ifstream myfile("C:\\Users\\%USERNAME%\\Documents\\github\\DSA-FMP\\MovieList.txt");
+  ifstream myfile("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\MovieList.txt");
   #else
   ifstream myfile("/Users/chikashoki/Documents/GitHub/DSA-FMP/MovieList.txt");
   #endif
@@ -178,12 +180,13 @@ void functions::traverse(int i)
 {
     for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
     {
-        cout << setw(i) << iter->id << endl;
-        cout << setw(i) << iter->copies << endl;
-        cout << setw(i) << iter->title << endl;
-        cout << setw(i) << iter->genre << endl;
-        cout << setw(i) << iter->prod << endl;
+        cout << setw(i) << iter->id;
+        cout << setw(i) << iter->title;
+        cout << setw(i) << iter->genre;
+        cout << setw(i) << iter->prod;
+        cout << setw(i) << iter->copies;
         cout << endl;
     }
+    
 
 }
