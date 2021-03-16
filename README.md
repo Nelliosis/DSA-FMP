@@ -28,7 +28,7 @@ Usage is entirely keyboard-based. Instructions are presented on screen.
 ImageGlass is used as a unified photo viewer instead of depending on Microsoft Photos.
 
 ## Community Standards
-Our repository abides by the GitHub Community Standards.
+Our repository abides by the GitHub Community Standards.\
 Read our [Code of Conduct](https://github.com/Nelliosis/DSA-FMP/blob/main/CODE_OF_CONDUCT.md)\
 Figure out our [Contribution Guidelines](https://github.com/Nelliosis/DSA-FMP/blob/main/CONTRIBUTING.md)
 
