@@ -21,12 +21,16 @@ Usage is entirely keyboard-based. Instructions are presented on screen.
 
 [Google Docs](https://drive.google.com/file/d/1LlQetB9_p9WkhR-1kR1sk-JlrMupJzbK/view?usp=sharing)
 
-# References and Credits
+## References and Credits
 
 [ImageGlass Photo Viewer](https://github.com/d2phap/ImageGlass)\
 © 2010 - 2019 by Duong Dieu Phap\
 ImageGlass is used as a unified photo viewer instead of depending on Microsoft Photos.
 
+## Community Standards
+Our repository abides by the GitHub Community Standards.
+Read our [Code of Conduct](https://github.com/Nelliosis/DSA-FMP/blob/main/CODE_OF_CONDUCT.md)\
+Figure out our [Contribution Guidelines](https://github.com/Nelliosis/DSA-FMP/blob/main/CONTRIBUTING.md)
 
 # License and Copyright
 
