@@ -35,8 +35,9 @@ public:
   void displaymovieinfo();
   void display();
   void imagehandler(string n);
-  void traverse(int i);
+  void traversedisplay(int i);
   void FromTextToList();
+  int searchmov(int n);
 
 };
 
@@ -53,25 +54,21 @@ bool functions::decision(char d)
 void functions::displaymovieinfo()
 {
 
+	int s;
 	cout<< "<<MOVIE INFO>>\n";
 	cout<< "Enter Movie ID: ";
-	cout<< "\n\n";                //proxy endline to simulate entered Movie ID
-
-	//call search function here
-
-	cout<< "Video ID" << setw(13) << ": " << endl;
-	cout<< "Movie Title" << setw(10) << ": " << endl;
-	cout<< "Genre" << setw(16) << ": " << endl;
-	cout<< "Production" << setw(11) << ": " << endl;
-	cout<< "Number of Copies" << setw(5) << ": " << endl;
-	imagehandler(node.location);
+	cin>> s;
+	if(!searchmov(s))
+	{
+		cout<< "Sorry, the movie you are searching for does not exist." << endl;
+	}
 }
 
 void functions::imagehandler(string n)
 {
   //call location based on environment variable
   #if _WIN32
-	   string cmd("start C:\\Users\\%USERNAME%\\Documents\\github\\DSA-FMP\\ImageGlass_8.0.12.8_x64\\ImageGlass.exe ");
+	   string cmd("start C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\ImageGlass_8.0.12.8_x64\\ImageGlass.exe ");
 	   cmd += n; //concatenate location and app based on Windows
     #elif __APPLE__
       string terminal("open /System/Applications/Preview.app ");
@@ -107,7 +104,7 @@ void functions::display()
 	<< left << setw(colwidth) << "Genre"
 	<< left << setw(colwidth) << "Production"
 	<< left << setw(colwidth) << "Copies\n";
-	traverse(colwidth);
+	traversedisplay(colwidth);
 	cout << "\n\n";
 }
 
@@ -176,7 +173,7 @@ string line;
 //end of text to list function
 }
 
-void functions::traverse(int i)
+void functions::traversedisplay(int i)
 {
     for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
     {
@@ -188,6 +185,29 @@ void functions::traverse(int i)
         cout << setw(i) << iter->copies;
 
     }
+}
 
-
+int functions::searchmov(int n)
+{
+	int found = 0;
+	for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
+    {
+        if (iter->id == n)
+        {
+        	cout<< "Video ID" << setw(13) << ": " << iter->id << endl;
+			cout<< "Movie Title" << setw(10) << ": " << iter->title << endl;
+			cout<< "Genre" << setw(16) << ": " << iter->genre << endl;
+			cout<< "Production" << setw(11) << ": " << iter->prod << endl;
+			cout<< "Number of Copies" << setw(5) << ": " << iter->copies << endl;
+			imagehandler(node.location);
+        	found = 1;
+		}
+		
+		else
+		{
+			continue;
+		}
+		
+		return found;
+    }
 }

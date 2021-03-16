@@ -65,6 +65,10 @@ do
     //call destructor
     return 0;
     break;
+    
+    default:
+    	cout<< "Invalid input. Please try again.\n";
+	break;
   }
 
 //try again logic
