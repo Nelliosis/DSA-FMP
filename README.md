@@ -23,7 +23,7 @@ Usage is entirely keyboard-based. Instructions are presented on screen.
 
 # References and Credits
 
-ImageGlass Photo Viewer\
+[ImageGlass Photo Viewer](https://github.com/d2phap/ImageGlass)\
 © 2010 - 2019 by Duong Dieu Phap\
 ImageGlass is used as a unified photo viewer instead of depending on Microsoft Photos.
 
