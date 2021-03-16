@@ -8,6 +8,7 @@
 
 using namespace std;
 
+//Structure that holds information about each movie
 struct MovieNode
 {
   int
@@ -21,27 +22,31 @@ struct MovieNode
         location;
 };
 
-
+//Declaration of STL linked List
 MovieNode node;
 list<MovieNode> MovieList;
 list<MovieNode>::iterator iter;
 
+
+//Functions 
 class functions
 {
-
-public:
-
-  bool decision(char);
-  void displaymovieinfo();
-  void display();
-  void imagehandler(string n);
-  void traversedisplay(int i);
-  void FromTextToList();
-  bool searchmov(int n);
+	
+	public:
+	
+	  bool decision(char);
+	  void displaymovieinfo();
+	  void display();
+  	  void imagehandler(string n);
+	  void traversedisplay(int i);
+	  void FromTextToList();
+	  bool searchmov(int n);
+	  void avail();
 };
 
 //Function Definitions
 
+//Determines if user wants to try again or not.
 bool functions::decision(char d)
 {
   if(d == 'y' || d == 'Y')
@@ -50,9 +55,9 @@ bool functions::decision(char d)
   return false;
 }
 
+//Displays a single movie's info by searching its ID
 void functions::displaymovieinfo()
 {
-
 	int s;
 	cout<< "<<MOVIE INFO>>\n";
 	cout<< "Enter Movie ID: ";
@@ -63,6 +68,7 @@ void functions::displaymovieinfo()
 	}
 }
 
+//Used to open the photo viewer and corresponding Movie Poster
 void functions::imagehandler(string n)
 {
   //call location based on environment variable
@@ -91,6 +97,7 @@ void functions::imagehandler(string n)
   	#endif
 }
 
+//Displays all of the movies in the Movie List
 void functions::display()
 {
 	//initializes column width
@@ -107,84 +114,85 @@ void functions::display()
 	cout << "\n\n";
 }
 
-
+//Transfers the data from MovieList.txt to the actual Linked List
 void functions::FromTextToList()
 {
+	//Variable Declarations
+	string line;
+	string jpg = ".jpg";
+	string id;
 
-string line;
-string jpg = ".jpg";
-string id;
 
-
-//determines path at runtime
-  #if _WIN32
-  ifstream myfile("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\MovieList.txt");
-  #else
-  ifstream myfile("/Users/chikashoki/Documents/GitHub/DSA-FMP/MovieList.txt");
-  #endif
-
-//while file is open, traverse by line
-    if (myfile.is_open())
-    {
-      int count = 0;
-      while ( getline (myfile,line) )
-      {
-        //count determines which line getfile is at the current node
-        switch(count)
-        {
-          case 0:
-          node.id = stoi(line);
-            break;
-          case 1:
-            node.title = line;
-            break;
-          case 2:
-          node.genre = line;
-            break;
-          case 3:
-          node.prod = line;
-            break;
-          case 4:
-          node.copies = stoi(line);
-            break;
-          case 5:
-          	#if _WIN32
-		    node.location = "C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\Posters\\";
-		    id = to_string(node.id);
-		    node.location += id;
-		    node.location += jpg;
-		  	#else
-		  	node.location = "/Users/chikashoki/Documents/GitHub/DSA-FMP/Posters/";
-		  	id = to_string(node.id);
-		    node.location += id;
-		    node.location += jpg;
-		  	#endif
-            break;
-          default:
-            break;
-        }
-
-        //if within the bounds of the node, continue adding
-        if(count < 5)
-        {
-          count++;
-        }
-        //once reached the end of the node, reset count to 0 and push node into list
-        else
-        {
-          count = 0;
-          MovieList.push_back(node);
-        }
-
-      }
-      myfile.close();
-
-    }
-
-    else cout << "Unable to open file" << endl;
-//end of text to list function
+	//determines path at runtime
+	  #if _WIN32
+	  ifstream myfile("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\MovieList.txt");
+	  #else
+	  ifstream myfile("/Users/chikashoki/Documents/GitHub/DSA-FMP/MovieList.txt");
+	  #endif
+	
+	//while file is open, traverse by line
+	    if (myfile.is_open())
+	    {
+	      int count = 0;
+	      while ( getline (myfile,line) )
+	      {
+	        //count determines which line getfile is at the current node
+	        switch(count)
+	        {
+	          case 0:
+	          node.id = stoi(line);
+	            break;
+	          case 1:
+	            node.title = line;
+	            break;
+	          case 2:
+	          node.genre = line;
+	            break;
+	          case 3:
+	          node.prod = line;
+	            break;
+	          case 4:
+	          node.copies = stoi(line);
+	            break;
+	          case 5:
+	          	#if _WIN32
+			    node.location = "C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\Posters\\";
+			    id = to_string(node.id);
+			    node.location += id;
+			    node.location += jpg;
+			  	#else
+			  	node.location = "/Users/chikashoki/Documents/GitHub/DSA-FMP/Posters/";
+			  	id = to_string(node.id);
+			    node.location += id;
+			    node.location += jpg;
+			  	#endif
+	            break;
+	          default:
+	            break;
+	        }
+	
+	        //if within the bounds of the node, continue adding
+	        if(count < 5)
+	        {
+	          count++;
+	        }
+	        //once reached the end of the node, reset count to 0 and push node into list
+	        else
+	        {
+	          count = 0;
+	          MovieList.push_back(node);
+	        }
+	
+	      }
+	      myfile.close();
+	
+	    }
+	
+	    else cout << "Unable to open file" << endl;
+	//end of text to list function
 }
 
+//Traverses Linked list while displaying each node
 void functions::traversedisplay(int i)
 {
     for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
@@ -199,6 +207,7 @@ void functions::traversedisplay(int i)
     }
 }
 
+//Used to Search for a certain movie using its Movie ID
 bool functions::searchmov(int n)
 {
 	//variable to know if Movie ID is found or not
@@ -225,4 +234,27 @@ bool functions::searchmov(int n)
     }
     
     return found;
+}
+
+//Used to check if a movie is available (has enough copies)
+void functions::avail()
+{
+	int s;
+	cout<< "<<MOVIE INFO>>\n";
+	cout<< "Enter Movie ID: ";
+	cin>> s;
+	if(!searchmov(s))
+	{
+		cout<< "Sorry, the movie you are looking for does not exist in our list.\n";
+	}
+	
+	if(iter->copies > 0)
+	{
+		cout<< "The movie is available!\n";
+	}
+	
+	else
+	{
+		cout<< "Sorry, we do not have enough copies of this movie as of this moment.\n";
+	}
 }

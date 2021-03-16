@@ -35,7 +35,7 @@ int main()
 	  cout << "[1]New Video\n[2]Rent a Video\n[3]Return a Video\n[4]Show Video Details\n[5]Display All Videos\n[6]Check Movie Availability\n[7]Customer Maintenance\n[8]Exit Program\n\nEnter Choice: ";
 	  cin >> ch;
 	
-	  //options
+	  //options 
 	  switch(ch)
 	  {
 	    case 1: //new video
@@ -56,6 +56,7 @@ int main()
 	    break;
 	
 	    case 6: // Check video availability
+	    	caller.avail();
 	    break;
 	
 	    case 7: //Customer maintenance
