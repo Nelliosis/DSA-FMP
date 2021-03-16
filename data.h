@@ -5,6 +5,7 @@
 #include <fstream>
 #include <cstdlib>
 #include <cstring>
+#include <queue>
 
 using namespace std;
 
@@ -21,10 +22,21 @@ struct MovieNode
         location;
 };
 
+struct CustomerNode
+{
+  int id;
+
+  std::string
+        name,
+        address;
+};
+
 
 MovieNode node;
+CustomerNode cnode;
 list<MovieNode> MovieList;
 list<MovieNode>::iterator iter;
+queue<CustomerNode> CustomerList;
 
 class functions
 {
@@ -37,6 +49,7 @@ public:
   void imagehandler(string n);
   void traversedisplay(int i);
   void FromTextToList();
+  void FromTexttoQueue();
   bool searchmov(int n);
 };
 
@@ -185,6 +198,62 @@ string id;
 //end of text to list function
 }
 
+void functions::FromTexttoQueue()
+{
+
+string line;
+
+  //determines path at runtime
+    #if _WIN32
+    ifstream myfile("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\MovieList.txt");
+    #else
+    ifstream myfile("/Users/chikashoki/Documents/GitHub/DSA-FMP/MovieList.txt");
+    #endif
+
+    if(myfile.is_open())
+    {
+        while(getline(myfile,line))
+        {
+          int count = 0;
+          switch(count)
+          {
+            case 0:
+              cnode.id = stoi(line);
+            break;
+
+            case 1:
+              cnode.name = line;
+            break;
+
+            case 2:
+              cnode.address = line;
+            break;
+
+            default:
+            break;
+          }
+          if(count < 3)
+          {
+            count++;
+          }
+          else
+          {
+            count = 0;
+            CustomerList.push(cnode);
+          }
+        }
+        myfile.close();
+    }
+    else
+    {
+      cout << "Unable to open file" << endl;
+    }
+
+    //end of text to queue function
+
+}
+
+
 void functions::traversedisplay(int i)
 {
     for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
@@ -217,12 +286,12 @@ bool functions::searchmov(int n)
 			imagehandler(iter->location);
         	break;
 		}
-		
+
 		else
 		{
 			continue;
 		}
     }
-    
+
     return found;
 }
