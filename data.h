@@ -189,9 +189,11 @@ void functions::traversedisplay(int i)
 
 int functions::searchmov(int n)
 {
+	//variable to know if Movie ID is found or not
 	int found = 0;
 	for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
     {
+	//if the Node ID matches the search ID display movie info
         if (iter->id == n)
         {
         	cout<< "Video ID" << setw(13) << ": " << iter->id << endl;
