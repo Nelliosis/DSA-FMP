@@ -37,8 +37,7 @@ public:
   void imagehandler(string n);
   void traversedisplay(int i);
   void FromTextToList();
-  int searchmov(int n);
-
+  bool searchmov(int n);
 };
 
 //Function Definitions
@@ -60,7 +59,7 @@ void functions::displaymovieinfo()
 	cin>> s;
 	if(!searchmov(s))
 	{
-		cout<< "Sorry, the movie you are searching for does not exist." << endl;
+		cout<< "Sorry, the movie you are looking for does not exist in our list.\n";
 	}
 }
 
@@ -113,6 +112,9 @@ void functions::FromTextToList()
 {
 
 string line;
+string jpg = ".jpg";
+string id;
+
 
 //determines path at runtime
   #if _WIN32
@@ -131,7 +133,7 @@ string line;
         switch(count)
         {
           case 0:
-            node.id = stoi(line);
+          node.id = stoi(line);
             break;
           case 1:
             node.title = line;
@@ -146,7 +148,17 @@ string line;
           node.copies = stoi(line);
             break;
           case 5:
-          //add location
+          	#if _WIN32
+		    node.location = "C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\Posters\\";
+		    id = to_string(node.id);
+		    node.location += id;
+		    node.location += jpg;
+		  	#else
+		  	node.location = "/Users/chikashoki/Documents/GitHub/DSA-FMP/Posters/";
+		  	id = to_string(node.id);
+		    node.location += id;
+		    node.location += jpg;
+		  	#endif
             break;
           default:
             break;
@@ -187,29 +199,30 @@ void functions::traversedisplay(int i)
     }
 }
 
-int functions::searchmov(int n)
+bool functions::searchmov(int n)
 {
 	//variable to know if Movie ID is found or not
-	int found = 0;
+	bool found = false;
 	for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
     {
 	//if the Node ID matches the search ID display movie info
         if (iter->id == n)
         {
+        	found = true;
         	cout<< "Video ID" << setw(13) << ": " << iter->id << endl;
 			cout<< "Movie Title" << setw(10) << ": " << iter->title << endl;
 			cout<< "Genre" << setw(16) << ": " << iter->genre << endl;
 			cout<< "Production" << setw(11) << ": " << iter->prod << endl;
 			cout<< "Number of Copies" << setw(5) << ": " << iter->copies << endl;
-			imagehandler(node.location);
-        	found = 1;
+			imagehandler(iter->location);
+        	break;
 		}
 		
 		else
 		{
 			continue;
 		}
-		
-		return found;
     }
+    
+    return found;
 }
