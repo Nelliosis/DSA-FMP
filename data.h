@@ -27,14 +27,23 @@ MovieNode node;
 list<MovieNode> MovieList;
 list<MovieNode>::iterator iter;
 
+//declaration of Number of Movies per Genre
+int posscifi = 5, scifi = 5;
+int poshorror = 10, horror = 5;
+int posromance = 15, romance = 5;
+int posaction = 20, action = 5;
+int poscomedy = 25, comedy = 5;
+int posnewgenre = 25, newgenre =0;
 
 //Functions 
 class functions
 {
-	
 	public:
 	
 	  bool decision(char);
+	  void AddMovie();
+	  void RentMovie();
+	  void ReturnMovie();
 	  void displaymovieinfo();
 	  void display();
   	  void imagehandler(string n);
@@ -115,6 +124,594 @@ void functions::display()
 }
 
 //Transfers the data from MovieList.txt to the actual Linked List
+void functions::AddMovie()
+{
+	//Variable Declarations
+	int nid, ngenre, ncopies;
+	string ntitle, nprod, nngenre;
+	string id;
+	string jpg = ".jpg";
+	
+	cout<< "<<NEW MOVIE>>\n";
+	//Genre chooser since each genre has a corresponding Movie ID
+	cout<< "GENRE CHOOSER: Please input what is the genre of the movie you are adding.\n\n"; 
+	cout<< "Press [1] for Sci-FI\n";
+	cout<< "Press [2] for Horror\n";
+	cout<< "Press [3] for Romance\n"; 
+	cout<< "Press [4] for Action\n"; 
+	cout<< "Press [5] for Comedy\n"; 
+	cout<< "Press [6] if you are adding a new genre.\n";
+	cout<< "Enter Genre: ";
+	cin>> ngenre;
+	
+	if(ngenre == 1)
+	{
+		node.genre = "Sci-Fi";
+		node.id = 100 + scifi +1;
+		scifi++;
+		cout<< "\n\nVideo ID: " << node.id << endl;
+		cin.ignore();
+		cout<< "Enter Title: ";
+		getline(cin, ntitle);
+		cout<< "Genre: " << node.genre << endl;
+		cout<< "Enter Production Company: ";
+		getline(cin, nprod);
+		cout<< "Enter Copies: ";
+		cin>> ncopies;
+		
+		node.title = ntitle;
+		node.prod = nprod;
+		node.copies = ncopies;
+		
+		#if _WIN32
+			node.location = "C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\Posters\\";
+			id = to_string(node.id);
+			node.location += id;
+			node.location += jpg;
+		#else
+		 	node.location = "/Users/chikashoki/Documents/GitHub/DSA-FMP/Posters/";
+		  	id = to_string(node.id);
+		    node.location += id;
+		    node.location += jpg;
+		#endif
+		
+		//Insert New Movie to most Recent Sci-Fi Movie
+		iter = MovieList.begin();
+		for(int i = 0; i < posscifi; i++)
+		{
+			iter++;
+		}
+		MovieList.insert(iter, node); 
+		posscifi++;
+		poshorror++;
+		posromance++;
+		posaction++;
+		poscomedy++;
+		posnewgenre++;
+		
+		
+		//determines path at runtime
+		  #if _WIN32
+		  ofstream myfile;
+		  myfile.open("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\MovieList.txt");
+		  #else
+		  ofstream myfile;
+		  myfile.open("/Users/chikashoki/Documents/GitHub/DSA-FMP/MovieList.txt");
+		  #endif
+		  
+		  for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
+		  {
+	        myfile<< iter->id << endl;
+	        myfile<< iter->title << endl;
+	        myfile<< iter->genre << endl;
+	        myfile<< iter->prod << endl;
+	        myfile<< iter->copies << "\n\n";
+    	  }
+		  myfile.close(); 
+	}
+	
+	else if(ngenre == 2)
+	{
+		node.genre = "Horror";
+		node.id = 200 + horror +1;
+		horror++;
+		cout<< "\n\nVideo ID: " << node.id << endl;
+		cin.ignore();
+		cout<< "Enter Title: ";
+		getline(cin, ntitle);
+		cout<< "Genre: " << node.genre << endl;
+		cout<< "Enter Production Company: ";
+		getline(cin, nprod);
+		cout<< "Enter Copies: ";
+		cin>> ncopies;
+		
+		node.title = ntitle;
+		node.prod = nprod;
+		node.copies = ncopies;
+		
+		#if _WIN32
+			node.location = "C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\Posters\\";
+			id = to_string(node.id);
+			node.location += id;
+			node.location += jpg;
+		#else
+		 	node.location = "/Users/chikashoki/Documents/GitHub/DSA-FMP/Posters/";
+		  	id = to_string(node.id);
+		    node.location += id;
+		    node.location += jpg;
+		#endif
+		
+		//Insert New Movie to most Recent Horror Movie
+		iter = MovieList.begin();
+		for(int i = 0; i < poshorror; i++)
+		{
+			iter++;
+		}
+		MovieList.insert(iter, node); 
+		poshorror++;
+		posromance++;
+		posaction++;
+		poscomedy++;
+		posnewgenre++;
+		
+		//determines path at runtime
+		  #if _WIN32
+		  ofstream myfile;
+		  myfile.open("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\MovieList.txt");
+		  #else
+		  ofstream myfile;
+		  myfile.open("/Users/chikashoki/Documents/GitHub/DSA-FMP/MovieList.txt");
+		  #endif
+		  
+		  for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
+		  {
+	        myfile<< iter->id << endl;
+	        myfile<< iter->title << endl;
+	        myfile<< iter->genre << endl;
+	        myfile<< iter->prod << endl;
+	        myfile<< iter->copies << "\n\n";
+    	  }
+		  myfile.close(); 
+	}
+	
+	else if(ngenre == 3)
+	{
+		node.genre = "Romance";
+		node.id = 300 + romance +1;
+		romance++;
+		cout<< "\n\nVideo ID: " << node.id << endl;
+		cin.ignore();
+		cout<< "Enter Title: ";
+		getline(cin, ntitle);
+		cout<< "Genre: " << node.genre << endl;
+		cout<< "Enter Production Company: ";
+		getline(cin, nprod);
+		cout<< "Enter Copies: ";
+		cin>> ncopies;
+		
+		node.title = ntitle;
+		node.prod = nprod;
+		node.copies = ncopies;
+		
+		#if _WIN32
+			node.location = "C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\Posters\\";
+			id = to_string(node.id);
+			node.location += id;
+			node.location += jpg;
+		#else
+		 	node.location = "/Users/chikashoki/Documents/GitHub/DSA-FMP/Posters/";
+		  	id = to_string(node.id);
+		    node.location += id;
+		    node.location += jpg;
+		#endif
+		
+		//Insert New Movie to most Recent Romance Movie
+		iter = MovieList.begin();
+		for(int i = 0; i < posromance; i++)
+		{
+			iter++;
+		}
+		MovieList.insert(iter, node); 
+		posromance++;
+		posaction++;
+		poscomedy++;
+		posnewgenre++;
+		
+		//determines path at runtime
+		  #if _WIN32
+		  ofstream myfile;
+		  myfile.open("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\MovieList.txt");
+		  #else
+		  ofstream myfile;
+		  myfile.open("/Users/chikashoki/Documents/GitHub/DSA-FMP/MovieList.txt");
+		  #endif
+		  
+		  for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
+		  {
+	        myfile<< iter->id << endl;
+	        myfile<< iter->title << endl;
+	        myfile<< iter->genre << endl;
+	        myfile<< iter->prod << endl;
+	        myfile<< iter->copies << "\n\n";
+    	  }
+		  myfile.close(); 
+	}
+	
+	else if(ngenre == 4)
+	{
+		node.genre = "Action";
+		node.id = 400 + action +1;
+		action++;
+		cout<< "\n\nVideo ID: " << node.id << endl;
+		cin.ignore();
+		cout<< "Enter Title: ";
+		getline(cin, ntitle);
+		cout<< "Genre: " << node.genre << endl;
+		cout<< "Enter Production Company: ";
+		getline(cin, nprod);
+		cout<< "Enter Copies: ";
+		cin>> ncopies;
+		
+		node.title = ntitle;
+		node.prod = nprod;
+		node.copies = ncopies;
+		
+		#if _WIN32
+			node.location = "C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\Posters\\";
+			id = to_string(node.id);
+			node.location += id;
+			node.location += jpg;
+		#else
+		 	node.location = "/Users/chikashoki/Documents/GitHub/DSA-FMP/Posters/";
+		  	id = to_string(node.id);
+		    node.location += id;
+		    node.location += jpg;
+		#endif
+		
+		//Insert New Movie to most Recent Action Movie
+		iter = MovieList.begin();
+		for(int i = 0; i < posaction; i++)
+		{
+			iter++;
+		}
+		MovieList.insert(iter, node); 
+		posaction++;
+		poscomedy++;
+		posnewgenre++;
+		
+		//determines path at runtime
+		  #if _WIN32
+		  ofstream myfile;
+		  myfile.open("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\MovieList.txt");
+		  #else
+		  ofstream myfile;
+		  myfile.open("/Users/chikashoki/Documents/GitHub/DSA-FMP/MovieList.txt");
+		  #endif
+		  
+		  for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
+		  {
+	        myfile<< iter->id << endl;
+	        myfile<< iter->title << endl;
+	        myfile<< iter->genre << endl;
+	        myfile<< iter->prod << endl;
+	        myfile<< iter->copies << "\n\n";
+    	  }
+		  myfile.close(); 
+	}
+	
+	else if(ngenre == 5)
+	{
+		node.genre = "Comedy";
+		node.id = 500 + comedy +1;
+		comedy++;
+		cout<< "\n\nVideo ID: " << node.id << endl;
+		cin.ignore();
+		cout<< "Enter Title: ";
+		getline(cin, ntitle);
+		cout<< "Genre: " << node.genre << endl;
+		cout<< "Enter Production Company: ";
+		getline(cin, nprod);
+		cout<< "Enter Copies: ";
+		cin>> ncopies;
+		
+		node.title = ntitle;
+		node.prod = nprod;
+		node.copies = ncopies;
+		
+		//Insert New Movie to most Recent Comedy Movie
+		iter = MovieList.begin();
+		for(int i = 0; i < poscomedy; i++)
+		{
+			iter++;
+		}
+		MovieList.insert(iter, node); 
+		poscomedy++;
+		posnewgenre++;
+		
+		#if _WIN32
+			node.location = "C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\Posters\\";
+			id = to_string(node.id);
+			node.location += id;
+			node.location += jpg;
+		#else
+		 	node.location = "/Users/chikashoki/Documents/GitHub/DSA-FMP/Posters/";
+		  	id = to_string(node.id);
+		    node.location += id;
+		    node.location += jpg;
+		#endif
+		
+		//determines path at runtime
+		  #if _WIN32
+		  ofstream myfile;
+		  myfile.open("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\MovieList.txt");
+		  #else
+		  ofstream myfile;
+		  myfile.open("/Users/chikashoki/Documents/GitHub/DSA-FMP/MovieList.txt");
+		  #endif
+		  
+		  for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
+		  {
+	        myfile<< iter->id << endl;
+	        myfile<< iter->title << endl;
+	        myfile<< iter->genre << endl;
+	        myfile<< iter->prod << endl;
+	        myfile<< iter->copies << "\n\n";
+    	  }
+		  myfile.close(); 
+	}
+	
+	else if(ngenre == 6)
+	{
+		node.id = 600 + newgenre +1;
+		newgenre++;
+		cout<< "\n\nVideo ID: " << node.id << endl;
+		cin.ignore();
+		cout<< "Enter Title: ";
+		getline(cin, ntitle);
+		cout<< "Enter Genre: ";
+		getline(cin, nngenre);
+		node.genre = nngenre;
+		cout<< "Enter Production Company: ";
+		getline(cin, nprod);
+		cout<< "Enter Copies: ";
+		cin>> ncopies;
+		
+		node.title = ntitle;
+		node.prod = nprod;
+		node.copies = ncopies;
+		
+		#if _WIN32
+			node.location = "C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\Posters\\";
+			id = to_string(node.id);
+			node.location += id;
+			node.location += jpg;
+		#else
+		 	node.location = "/Users/chikashoki/Documents/GitHub/DSA-FMP/Posters/";
+		  	id = to_string(node.id);
+		    node.location += id;
+		    node.location += jpg;
+		#endif
+		
+		//Insert New Movie to most Recent Comedy Movie
+		iter = MovieList.begin();
+		for(int i = 0; i < posnewgenre; i++)
+		{
+			iter++;
+		}
+		MovieList.insert(iter, node); 
+		posnewgenre++;
+		
+		//determines path at runtime
+		  #if _WIN32
+		  ofstream myfile;
+		  myfile.open("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\MovieList.txt");
+		  #else
+		  ofstream myfile;
+		  myfile.open("/Users/chikashoki/Documents/GitHub/DSA-FMP/MovieList.txt");
+		  #endif
+		  
+		  for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
+		  {
+	        myfile<< iter->id << endl;
+	        myfile<< iter->title << endl;
+	        myfile<< iter->genre << endl;
+	        myfile<< iter->prod << endl;
+	        myfile<< iter->copies << "\n\n";
+    	  }
+		  myfile.close(); 
+	}
+}
+
+void functions::RentMovie()
+{
+	//Insert Customer ID first here, wala pang functions customner ADT so blank muna
+	bool found = false;
+	int s;
+	cout<< "<<RENT A MOVIE>>\n";
+	cout<< "Enter Movie ID: ";
+	cin>> s;
+	
+	for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
+    {
+	//if the Node ID matches the search ID display movie info
+        if (iter->id == s)
+        {
+        	if(iter->copies > 0)
+        	{
+        		iter->copies -= 1;
+    			cout<< "Movie Successfully Rented!\n";
+        		found = true;
+				break;
+			}
+			
+			else
+			{
+				cout<< "Sorry, the movie you are trying to rent has no copies available as of this moment.\n";
+				found = true;
+			}
+		}
+		
+		else
+		{
+			continue;
+		}
+    }
+    
+    if(found == false)
+    {
+    	cout<< "Sorry, the movie you are looking for does not exist in our list.\n";
+	}
+    
+    
+    //determines path at runtime
+		  #if _WIN32
+		  ofstream myfile;
+		  myfile.open("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\MovieList.txt");
+		  #else
+		  ofstream myfile;
+		  myfile.open("/Users/chikashoki/Documents/GitHub/DSA-FMP/MovieList.txt");
+		  #endif
+		  
+		  for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
+		  {
+	        myfile<< iter->id << endl;
+	        myfile<< iter->title << endl;
+	        myfile<< iter->genre << endl;
+	        myfile<< iter->prod << endl;
+	        myfile<< iter->copies << "\n\n";
+    	  }
+		  myfile.close(); 
+}
+
+void functions::ReturnMovie()
+{
+	//Insert Customer ID first here, wala pang functions customner ADT so blank muna
+	bool found = false;
+	int s;
+	cout<< "<<RETURN A MOVIE>>\n";
+	cout<< "Enter Movie ID: ";
+	cin>> s;
+	
+	for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
+    {
+	//if the Node ID matches the search ID display movie info
+        if (iter->id == s)
+        {
+        	if(iter->copies > 0)
+        	{
+        		iter->copies += 1;
+    			cout<< "Movie Successfully Returned!\n";
+        		found = true;
+				break;
+			}
+			
+			else
+			{
+				cout<< "Sorry, the movie you are trying to rent has no copies available as of this moment.\n";
+				found = true;
+			}
+		}
+		
+		else
+		{
+			continue;
+		}
+    }
+    
+    if(found == false)
+    {
+    	cout<< "Sorry, the movie you are looking for does not exist in our list.\n";
+	}
+    
+    
+    //determines path at runtime
+		  #if _WIN32
+		  ofstream myfile;
+		  myfile.open("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\MovieList.txt");
+		  #else
+		  ofstream myfile;
+		  myfile.open("/Users/chikashoki/Documents/GitHub/DSA-FMP/MovieList.txt");
+		  #endif
+		  
+		  for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
+		  {
+	        myfile<< iter->id << endl;
+	        myfile<< iter->title << endl;
+	        myfile<< iter->genre << endl;
+	        myfile<< iter->prod << endl;
+	        myfile<< iter->copies << "\n\n";
+    	  }
+		  myfile.close(); 
+}
+
+//Traverses Linked list while displaying each node
+void functions::traversedisplay(int i)
+{
+    for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
+    {
+        cout << endl;
+        cout << setw(i) << iter->id;
+        cout << setw(i) << iter->title;
+        cout << setw(i) << iter->genre;
+        cout << setw(i) << iter->prod;
+        cout << setw(i) << iter->copies;
+
+    }
+}
+
+//Used to Search for a certain movie using its Movie ID
+bool functions::searchmov(int n)
+{
+	//variable to know if Movie ID is found or not
+	bool found = false;
+	for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
+    {
+	//if the Node ID matches the search ID display movie info
+        if (iter->id == n)
+        {
+        	found = true;
+        	cout<< "Video ID" << setw(13) << ": " << iter->id << endl;
+			cout<< "Movie Title" << setw(10) << ": " << iter->title << endl;
+			cout<< "Genre" << setw(16) << ": " << iter->genre << endl;
+			cout<< "Production" << setw(11) << ": " << iter->prod << endl;
+			cout<< "Number of Copies" << setw(5) << ": " << iter->copies << endl;
+			imagehandler(iter->location);
+        	break;
+		}
+		
+		else
+		{
+			continue;
+		}
+    }
+    
+    return found;
+}
+
+//Used to check if a movie is available (has enough copies)
+void functions::avail()
+{
+	int s;
+	cout<< "<<MOVIE INFO>>\n";
+	cout<< "Enter Movie ID: ";
+	cin>> s;
+	if(!searchmov(s))
+	{
+		cout<< "Sorry, the movie you are looking for does not exist in our list.\n";
+	}
+	
+	if(iter->copies > 0)
+	{
+		cout<< "The movie is available!\n";
+	}
+	
+	else
+	{
+		cout<< "Sorry, we do not have enough copies of this movie as of this moment.\n";
+	}
+}
+
+//Accepts new data and inputs it to the Linked list and MovieList.txt
 void functions::FromTextToList()
 {
 	//Variable Declarations
@@ -190,71 +787,4 @@ void functions::FromTextToList()
 	
 	    else cout << "Unable to open file" << endl;
 	//end of text to list function
-}
-
-//Traverses Linked list while displaying each node
-void functions::traversedisplay(int i)
-{
-    for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
-    {
-        cout << endl;
-        cout << setw(i) << iter->id;
-        cout << setw(i) << iter->title;
-        cout << setw(i) << iter->genre;
-        cout << setw(i) << iter->prod;
-        cout << setw(i) << iter->copies;
-
-    }
-}
-
-//Used to Search for a certain movie using its Movie ID
-bool functions::searchmov(int n)
-{
-	//variable to know if Movie ID is found or not
-	bool found = false;
-	for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
-    {
-	//if the Node ID matches the search ID display movie info
-        if (iter->id == n)
-        {
-        	found = true;
-        	cout<< "Video ID" << setw(13) << ": " << iter->id << endl;
-			cout<< "Movie Title" << setw(10) << ": " << iter->title << endl;
-			cout<< "Genre" << setw(16) << ": " << iter->genre << endl;
-			cout<< "Production" << setw(11) << ": " << iter->prod << endl;
-			cout<< "Number of Copies" << setw(5) << ": " << iter->copies << endl;
-			imagehandler(iter->location);
-        	break;
-		}
-		
-		else
-		{
-			continue;
-		}
-    }
-    
-    return found;
-}
-
-//Used to check if a movie is available (has enough copies)
-void functions::avail()
-{
-	int s;
-	cout<< "<<MOVIE INFO>>\n";
-	cout<< "Enter Movie ID: ";
-	cin>> s;
-	if(!searchmov(s))
-	{
-		cout<< "Sorry, the movie you are looking for does not exist in our list.\n";
-	}
-	
-	if(iter->copies > 0)
-	{
-		cout<< "The movie is available!\n";
-	}
-	
-	else
-	{
-		cout<< "Sorry, we do not have enough copies of this movie as of this moment.\n";
-	}
 }

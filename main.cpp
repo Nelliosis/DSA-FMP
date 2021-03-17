@@ -39,12 +39,15 @@ int main()
 	  switch(ch)
 	  {
 	    case 1: //new video
+	    	caller.AddMovie();
 	    break;
 	
 	    case 2: //rent a video
+	    	caller.RentMovie();
 	    break;
 	
 	    case 3: //return a video
+	    	caller.ReturnMovie();
 	    break;
 	
 	    case 4: //Show video details
