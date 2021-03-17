@@ -28,121 +28,121 @@ Sci-Fi
 Lucas Films
 5
 
-206
+201
 Insidious
 Horror
 Blumhouse Productions
 5
 
-207
+202
 Insidious: Chapter 2
 Horror
 Blumhouse Productions
 5
 
-208
+203
 Insidious: Chapter 3
 Horror
 Blumhouse Productions
 5
 
-209
+204
 Insidious: The Last Key
 Horror
 Blumhouse Productions
 5
 
-210
+205
 Midsommar
 Horror
 Square Peg
 5
 
-311
+301
 The Notebook
 Romance
 Gran Via
 5
 
-312
+302
 A Walk to Remember
 Romance
 Warner Bros. Pictures
 5
 
-313 
+303
 Titanic
 Romance
 Paramount Pictures
 5
 
-314
+304
 The Fault in Our Stars
 Romance
 Fox 2000 Pictures
 5
 
-315
+305
 Beauty and the Beast
 Romance
 Disney
 5
 
-416
+401
 John Wick Chapter 3: Parabellum
 Action
 Summit Entertainment
 5
 
-417
+402
 Bad Boys for life
 Action
 Sony Pictures
 5
 
-418
+403
 Spider-Man Far From Home
 Action
 Marvel Studios
 5
 
-419
+404
 Mission: Impossible - Fallout
 Action
 Skydance Media
 5
 
-420
+405
 Dunkirk
 Action
 Warner Bros. Pictures
 5
 
-521
+501
 Trolls World Tour
 Comedy
 DreamWorks Animation
 5
 
-522
+502
 Onward
 Comedy
 Walt Disney Pictures
 5
 
-523
+503
 The Spongebob Movie: Sponge on the run
 Comedy
 Paramount animation
 5
 
-524
+504
 Spies in Disguise
 Comedy
 Blue Sky Studios
 5
 
-525
+505
 The Secret Life of Pets 2
 Comedy
 Universal Pictures
