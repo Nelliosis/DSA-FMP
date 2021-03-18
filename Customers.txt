@@ -1,30 +1,39 @@
+1
+Patrick Luiz
+Laguna
 
-Name: Patrick Luiz
-Address: Laguna
+2
+Jiggy Brillantes
+Binan
 
-Name: Danica Paunin
-Address: Cavite
+3
+Junel Capawing
+Laguna
 
-Name: Junel Capawing
-Address: Laguna
+4
+Austin Marbella
+Laguna
 
-Name: Austin Marbella
-Address: Laguna
+5
+Jan Paulo
+Laguna
 
-Name: Jan Paulo
-Address: Laguna
+6
+Pierre Dalicano
+Laguna
 
-Name: Pierre Dalicano
-Address: Laguna
+7
+Angelo Sanguyo
+Laguna
 
-Name: Angelo Sanguyo
-Address: Laguna
+8
+Lexter Cortez
+Cavite
 
-Name: Lexter Cortez
-Address: Cavite
+9
+Rommel Solis
+Laguna
 
-Name: Rommel Solis
-Address: Laguna
-
-Name: Jocelyn Haling
-Address: Laguna
+10
+Jocelyn Haling
+Laguna
