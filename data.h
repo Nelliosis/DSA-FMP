@@ -72,7 +72,7 @@ class functions
 void functions::AddMovie()
 {
 	//Variable Declarations
-	int nid, ngenre, ncopies;
+	int ngenre, ncopies;
 	string ntitle, nprod, nngenre;
 	string id;
 	string jpg = ".jpg";
