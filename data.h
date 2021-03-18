@@ -39,90 +39,22 @@ int posnewgenre = 25, newgenre =0;
 class functions
 {
 	public:
-	
-	  bool decision(char);
 	  void AddMovie();
 	  void RentMovie();
 	  void ReturnMovie();
 	  void displaymovieinfo();
 	  void display();
-  	  void imagehandler(string n);
+	  void avail();
+	  bool decision(char);
+	  void imagehandler(string n);
 	  void traversedisplay(int i);
 	  void FromTextToList();
 	  bool searchmov(int n);
-	  void avail();
 };
 
 //Function Definitions
 
-//Determines if user wants to try again or not.
-bool functions::decision(char d)
-{
-  if(d == 'y' || d == 'Y')
-  return true;
-  else
-  return false;
-}
-
-//Displays a single movie's info by searching its ID
-void functions::displaymovieinfo()
-{
-	int s;
-	cout<< "<<MOVIE INFO>>\n";
-	cout<< "Enter Movie ID: ";
-	cin>> s;
-	if(!searchmov(s))
-	{
-		cout<< "Sorry, the movie you are looking for does not exist in our list.\n";
-	}
-}
-
-//Used to open the photo viewer and corresponding Movie Poster
-void functions::imagehandler(string n)
-{
-  //call location based on environment variable
-  #if _WIN32
-	   string cmd("start C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\ImageGlass_8.0.12.8_x64\\ImageGlass.exe ");
-	   cmd += n; //concatenate location and app based on Windows
-    #elif __APPLE__
-      string terminal("open /System/Applications/Preview.app ");
-      terminal += n; //concatenate location and app based on macOS
-    #elif __LINUX__
-      string terminal("open /System/Applications/Preview.app ");
-      terminal += n; //concatenate location and app based on macOS
-    #else
-        continue;
-    #endif
-
-  //To properly utilize rename file directory of image to be displayed
-	#if __APPLE__
-  	   system(terminal.c_str());
-  	#elif _WIN32
-  		  system(cmd.c_str());
-	  #elif __LINUX__
-  	    system("open /System/Applications/Preview.app /Users/chikashoki/Documents/GitHub/Hello-Git/sched.png");
-  	#else
-  	    continue;
-  	#endif
-}
-
-//Displays all of the movies in the Movie List
-void functions::display()
-{
-	//initializes column width
-	int colwidth = 40;
-
-	//displays headers of table
-	cout<< "<<MOVIE LIST>>\n";
-	cout<< left << setw(colwidth) << "Video ID"
-	<< left << setw(colwidth) << "Movie Title"
-	<< left << setw(colwidth) << "Genre"
-	<< left << setw(colwidth) << "Production"
-	<< left << setw(colwidth) << "Copies\n";
-	traversedisplay(colwidth);
-	cout << "\n\n";
-}
-
+//public:
 //Transfers the data from MovieList.txt to the actual Linked List
 void functions::AddMovie()
 {
@@ -644,48 +576,34 @@ void functions::ReturnMovie()
 		  myfile.close(); 
 }
 
-//Traverses Linked list while displaying each node
-void functions::traversedisplay(int i)
+//Displays a single movie's info by searching its ID
+void functions::displaymovieinfo()
 {
-    for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
-    {
-        cout << endl;
-        cout << setw(i) << iter->id;
-        cout << setw(i) << iter->title;
-        cout << setw(i) << iter->genre;
-        cout << setw(i) << iter->prod;
-        cout << setw(i) << iter->copies;
-
-    }
+	int s;
+	cout<< "<<MOVIE INFO>>\n";
+	cout<< "Enter Movie ID: ";
+	cin>> s;
+	if(!searchmov(s))
+	{
+		cout<< "Sorry, the movie you are looking for does not exist in our list.\n";
+	}
 }
 
-//Used to Search for a certain movie using its Movie ID
-bool functions::searchmov(int n)
+//Displays all of the movies in the Movie List
+void functions::display()
 {
-	//variable to know if Movie ID is found or not
-	bool found = false;
-	for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
-    {
-	//if the Node ID matches the search ID display movie info
-        if (iter->id == n)
-        {
-        	found = true;
-        	cout<< "Video ID" << setw(13) << ": " << iter->id << endl;
-			cout<< "Movie Title" << setw(10) << ": " << iter->title << endl;
-			cout<< "Genre" << setw(16) << ": " << iter->genre << endl;
-			cout<< "Production" << setw(11) << ": " << iter->prod << endl;
-			cout<< "Number of Copies" << setw(5) << ": " << iter->copies << endl;
-			imagehandler(iter->location);
-        	break;
-		}
-		
-		else
-		{
-			continue;
-		}
-    }
-    
-    return found;
+	//initializes column width
+	int colwidth = 40;
+
+	//displays headers of table
+	cout<< "<<MOVIE LIST>>\n";
+	cout<< left << setw(colwidth) << "Video ID"
+	<< left << setw(colwidth) << "Movie Title"
+	<< left << setw(colwidth) << "Genre"
+	<< left << setw(colwidth) << "Production"
+	<< left << setw(colwidth) << "Copies\n";
+	traversedisplay(colwidth);
+	cout << "\n\n";
 }
 
 //Used to check if a movie is available (has enough copies)
@@ -709,6 +627,59 @@ void functions::avail()
 	{
 		cout<< "Sorry, we do not have enough copies of this movie as of this moment.\n";
 	}
+}
+
+//Determines if user wants to try again or not.
+bool functions::decision(char d)
+{
+  if(d == 'y' || d == 'Y')
+  return true;
+  else
+  return false;
+}
+
+//Used to open the photo viewer and corresponding Movie Poster
+void functions::imagehandler(string n)
+{
+  //call location based on environment variable
+  #if _WIN32
+	   string cmd("start C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\ImageGlass_8.0.12.8_x64\\ImageGlass.exe ");
+	   cmd += n; //concatenate location and app based on Windows
+    #elif __APPLE__
+      string terminal("open /System/Applications/Preview.app ");
+      terminal += n; //concatenate location and app based on macOS
+    #elif __LINUX__
+      string terminal("open /System/Applications/Preview.app ");
+      terminal += n; //concatenate location and app based on macOS
+    #else
+        continue;
+    #endif
+
+  //To properly utilize rename file directory of image to be displayed
+	#if __APPLE__
+  	   system(terminal.c_str());
+  	#elif _WIN32
+  		  system(cmd.c_str());
+	  #elif __LINUX__
+  	    system("open /System/Applications/Preview.app /Users/chikashoki/Documents/GitHub/Hello-Git/sched.png");
+  	#else
+  	    continue;
+  	#endif
+}
+
+//Traverses Linked list while displaying each node
+void functions::traversedisplay(int i)
+{
+    for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
+    {
+        cout << endl;
+        cout << setw(i) << iter->id;
+        cout << setw(i) << iter->title;
+        cout << setw(i) << iter->genre;
+        cout << setw(i) << iter->prod;
+        cout << setw(i) << iter->copies;
+
+    }
 }
 
 //Accepts new data and inputs it to the Linked list and MovieList.txt
@@ -788,3 +759,37 @@ void functions::FromTextToList()
 	    else cout << "Unable to open file" << endl;
 	//end of text to list function
 }
+
+
+//Used to Search for a certain movie using its Movie ID
+bool functions::searchmov(int n)
+{
+	//variable to know if Movie ID is found or not
+	bool found = false;
+	for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
+    {
+	//if the Node ID matches the search ID display movie info
+        if (iter->id == n)
+        {
+        	found = true;
+        	cout<< "Video ID" << setw(13) << ": " << iter->id << endl;
+			cout<< "Movie Title" << setw(10) << ": " << iter->title << endl;
+			cout<< "Genre" << setw(16) << ": " << iter->genre << endl;
+			cout<< "Production" << setw(11) << ": " << iter->prod << endl;
+			cout<< "Number of Copies" << setw(5) << ": " << iter->copies << endl;
+			imagehandler(iter->location);
+        	break;
+		}
+		
+		else
+		{
+			continue;
+		}
+    }
+    
+    return found;
+}
+
+
+
+
