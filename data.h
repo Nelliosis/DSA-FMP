@@ -5,6 +5,7 @@
 #include <fstream>
 #include <cstdlib>
 #include <cstring>
+#include <queue>
 
 using namespace std;
 
@@ -22,10 +23,25 @@ struct MovieNode
         location;
 };
 
+
+
+//Structure that holds customer information
+struct CustomerNode
+{
+  int id;
+
+  std::string
+        name,
+        address;
+};
+
+
 //Declaration of STL linked List
 MovieNode node;
+CustomerNode cnode;
 list<MovieNode> MovieList;
 list<MovieNode>::iterator iter;
+queue<CustomerNode> CustomerList;
 
 //declaration of Number of Movies per Genre
 int posscifi = 5, scifi = 5;
@@ -38,6 +54,7 @@ int posnewgenre = 25, newgenre =0;
 //Functions 
 class functions
 {
+
 	public:
 	  void AddMovie();
 	  void RentMovie();
@@ -50,6 +67,7 @@ class functions
 	  void traversedisplay(int i);
 	  void FromTextToList();
 	  bool searchmov(int n);
+
 };
 
 //Function Definitions
@@ -667,7 +685,159 @@ void functions::imagehandler(string n)
   	#endif
 }
 
+
 //Traverses Linked list while displaying each node
+void functions::display()
+{
+	//initializes column width
+	int colwidth = 40;
+
+	//displays headers of table
+	cout<< "<<MOVIE LIST>>\n";
+	cout<< left << setw(colwidth) << "Video ID"
+	<< left << setw(colwidth) << "Movie Title"
+	<< left << setw(colwidth) << "Genre"
+	<< left << setw(colwidth) << "Production"
+	<< left << setw(colwidth) << "Copies\n";
+	traversedisplay(colwidth);
+	cout << "\n\n";
+}
+
+//converts text from customer into Queue
+void functions::FromTextToList()
+{
+
+string line;
+string jpg = ".jpg";
+string id;
+
+
+//determines path at runtime
+  #if _WIN32
+  ifstream myfile("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\MovieList.txt");
+  #else
+  ifstream myfile("/Users/chikashoki/Documents/GitHub/DSA-FMP/MovieList.txt");
+  #endif
+
+//while file is open, traverse by line
+    if (myfile.is_open())
+    {
+      int count = 0;
+      while ( getline (myfile,line) )
+      {
+        //count determines which line getfile is at the current node
+        switch(count)
+        {
+          case 0:
+          node.id = stoi(line);
+            break;
+          case 1:
+            node.title = line;
+            break;
+          case 2:
+          node.genre = line;
+            break;
+          case 3:
+          node.prod = line;
+            break;
+          case 4:
+          node.copies = stoi(line);
+            break;
+          case 5:
+          	#if _WIN32
+		    node.location = "C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\Posters\\";
+		    id = to_string(node.id);
+		    node.location += id;
+		    node.location += jpg;
+		  	#else
+		  	node.location = "/Users/chikashoki/Documents/GitHub/DSA-FMP/Posters/";
+		  	id = to_string(node.id);
+		    node.location += id;
+		    node.location += jpg;
+		  	#endif
+            break;
+          default:
+            break;
+        }
+
+        //if within the bounds of the node, continue adding
+        if(count < 5)
+        {
+          count++;
+        }
+        //once reached the end of the node, reset count to 0 and push node into list
+        else
+        {
+          count = 0;
+          MovieList.push_back(node);
+        }
+
+      }
+      myfile.close();
+
+    }
+
+    else cout << "Unable to open file" << endl;
+//end of text to list function
+}
+
+void functions::FromTexttoQueue()
+{
+
+string line;
+
+  //determines path at runtime
+    #if _WIN32
+    ifstream myfile("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\MovieList.txt");
+    #else
+    ifstream myfile("/Users/chikashoki/Documents/GitHub/DSA-FMP/MovieList.txt");
+    #endif
+
+    if(myfile.is_open())
+    {
+        while(getline(myfile,line))
+        {
+          int count = 0;
+          switch(count)
+          {
+            case 0:
+              cnode.id = stoi(line);
+            break;
+
+            case 1:
+              cnode.name = line;
+            break;
+
+            case 2:
+              cnode.address = line;
+            break;
+
+            default:
+            break;
+          }
+          if(count < 3)
+          {
+            count++;
+          }
+          else
+          {
+            count = 0;
+            CustomerList.push(cnode);
+          }
+        }
+        myfile.close();
+    }
+    else
+    {
+      cout << "Unable to open file" << endl;
+    }
+
+    //end of text to queue function
+
+}
+
+
+
 void functions::traversedisplay(int i)
 {
     for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
@@ -780,13 +950,13 @@ bool functions::searchmov(int n)
 			imagehandler(iter->location);
         	break;
 		}
-		
+
 		else
 		{
 			continue;
 		}
     }
-    
+
     return found;
 }
 

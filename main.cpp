@@ -80,6 +80,7 @@ int main()
 	cin >> dec;
 	}while(caller.decision(dec));
 
+
   return 0;
 }
 
