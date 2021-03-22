@@ -64,6 +64,7 @@ int main()
 	    break;
 
 	    case 7: //Customer maintenance
+			caller.AddCustomer();
 	    break;
 
 	    case 8:

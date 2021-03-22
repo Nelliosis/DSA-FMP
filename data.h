@@ -64,6 +64,7 @@ class functions
 	  void FromTextToList();
     void FromTexttoQueue();
 	  bool searchmov(int n);
+    void AddCustomer();
 };
 
 //Function Definitions
@@ -858,4 +859,23 @@ bool functions::searchmov(int n)
     }
 
     return found;
+}
+
+void functions::AddCustomer()
+{
+  int CustomerSize = CustomerList.size()+1;
+  int catcher = 0;
+  cout << "<ADD A CUSTOMER>\n\n";
+
+  catcher = ++CustomerSize;
+  cnode.id = catcher;
+  cin.ignore();
+  cout << "Customer ID: " << catcher << endl;
+  cout << "Name: ";
+  getline(cin,cnode.name);
+  cout << "Address: ";
+  getline(cin,cnode.address);
+
+  CustomerList.push(cnode);
+  //CustomerWriter();
 }
