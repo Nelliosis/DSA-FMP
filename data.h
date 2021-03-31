@@ -39,24 +39,19 @@ struct CustomerNode
 //Structure that holds customer rent information
 struct CustomerRent
 {
-  int
-  		id,
-  		MovieID;
-  		
-  std::string
-  		name,
-  		address,
-  		title;
-  		
+  int id, MovieID;
 };
 
 //Declaration of STL linked List
 MovieNode node;
 CustomerNode cnode;
+CustomerRent crent;
 list<MovieNode> MovieList;
 list<MovieNode>::iterator iter;
 list<CustomerNode> CustomerList;
 list<CustomerNode>::iterator miter;
+list<CustomerRent> RentList;
+list<CustomerRent>::iterator niter;
 
 //declaration of Number of Movies per Genre
 int posscifi = 5, scifi = 5;
@@ -133,7 +128,7 @@ void functions::AddMovie()
 		node.copies = ncopies;
 
 		#if _WIN32
-			node.location = "C:\\Users\\paturiko\\Documents\\github\\DSA-FMP\\Posters\\";
+			node.location = "C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\Posters\\";
 			id = to_string(node.id);
 			node.location += id;
 			node.location += jpg;
@@ -162,7 +157,7 @@ void functions::AddMovie()
 		//determines path at runtime
 		  #if _WIN32
 		  ofstream myfile;
-		  myfile.open("C:\\Users\\paturiko\\Documents\\github\\DSA-FMP\\MovieList.txt");
+		  myfile.open("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\MovieList.txt");
 		  #else
 		  ofstream myfile;
 		  myfile.open("/Users/chikashoki/Documents/GitHub/DSA-FMP/MovieList.txt");
@@ -199,7 +194,7 @@ void functions::AddMovie()
 		node.copies = ncopies;
 
 		#if _WIN32
-			node.location = "C:\\Users\\paturiko\\Documents\\github\\DSA-FMP\\Posters\\";
+			node.location = "C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\Posters\\";
 			id = to_string(node.id);
 			node.location += id;
 			node.location += jpg;
@@ -226,7 +221,7 @@ void functions::AddMovie()
 		//determines path at runtime
 		  #if _WIN32
 		  ofstream myfile;
-		  myfile.open("C:\\Users\\paturiko\\Documents\\github\\DSA-FMP\\MovieList.txt");
+		  myfile.open("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\MovieList.txt");
 		  #else
 		  ofstream myfile;
 		  myfile.open("/Users/chikashoki/Documents/GitHub/DSA-FMP/MovieList.txt");
@@ -263,7 +258,7 @@ void functions::AddMovie()
 		node.copies = ncopies;
 
 		#if _WIN32
-			node.location = "C:\\Users\\paturiko\\Documents\\github\\DSA-FMP\\Posters\\";
+			node.location = "C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\Posters\\";
 			id = to_string(node.id);
 			node.location += id;
 			node.location += jpg;
@@ -289,7 +284,7 @@ void functions::AddMovie()
 		//determines path at runtime
 		  #if _WIN32
 		  ofstream myfile;
-		  myfile.open("C:\\Users\\paturiko\\Documents\\github\\DSA-FMP\\MovieList.txt");
+		  myfile.open("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\MovieList.txt");
 		  #else
 		  ofstream myfile;
 		  myfile.open("/Users/chikashoki/Documents/GitHub/DSA-FMP/MovieList.txt");
@@ -326,7 +321,7 @@ void functions::AddMovie()
 		node.copies = ncopies;
 
 		#if _WIN32
-			node.location = "C:\\Users\\paturiko\\Documents\\github\\DSA-FMP\\Posters\\";
+			node.location = "C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\Posters\\";
 			id = to_string(node.id);
 			node.location += id;
 			node.location += jpg;
@@ -351,7 +346,7 @@ void functions::AddMovie()
 		//determines path at runtime
 		  #if _WIN32
 		  ofstream myfile;
-		  myfile.open("C:\\Users\\paturiko\\Documents\\github\\DSA-FMP\\MovieList.txt");
+		  myfile.open("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\MovieList.txt");
 		  #else
 		  ofstream myfile;
 		  myfile.open("/Users/chikashoki/Documents/GitHub/DSA-FMP/MovieList.txt");
@@ -398,7 +393,7 @@ void functions::AddMovie()
 		posnewgenre++;
 
 		#if _WIN32
-			node.location = "C:\\Users\\paturiko\\Documents\\github\\DSA-FMP\\Posters\\";
+			node.location = "C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\Posters\\";
 			id = to_string(node.id);
 			node.location += id;
 			node.location += jpg;
@@ -412,7 +407,7 @@ void functions::AddMovie()
 		//determines path at runtime
 		  #if _WIN32
 		  ofstream myfile;
-		  myfile.open("C:\\Users\\paturiko\\Documents\\github\\DSA-FMP\\MovieList.txt");
+		  myfile.open("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\MovieList.txt");
 		  #else
 		  ofstream myfile;
 		  myfile.open("/Users/chikashoki/Documents/GitHub/DSA-FMP/MovieList.txt");
@@ -450,7 +445,7 @@ void functions::AddMovie()
 		node.copies = ncopies;
 
 		#if _WIN32
-			node.location = "C:\\Users\\paturiko\\Documents\\github\\DSA-FMP\\Posters\\";
+			node.location = "C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\Posters\\";
 			id = to_string(node.id);
 			node.location += id;
 			node.location += jpg;
@@ -473,7 +468,7 @@ void functions::AddMovie()
 		//determines path at runtime
 		  #if _WIN32
 		  ofstream myfile;
-		  myfile.open("C:\\Users\\paturiko\\Documents\\github\\DSA-FMP\\MovieList.txt");
+		  myfile.open("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\MovieList.txt");
 		  #else
 		  ofstream myfile;
 		  myfile.open("/Users/chikashoki/Documents/GitHub/DSA-FMP/MovieList.txt");
@@ -512,7 +507,6 @@ void functions::RentMovie()
         {
         	if(iter->copies > 0)
         	{
-        		
         		cout<< "Movie to be rented: "<<endl;
         		cout<< "Video ID" << setw(13) << ": " << iter->id << endl;
 				cout<< "Movie Title" << setw(10) << ": " << iter->title << endl;
@@ -521,6 +515,8 @@ void functions::RentMovie()
 				cout<< "Number of Copies" << setw(5) << ": " << iter->copies << endl << endl;
         		iter->copies -= 1;
     			cout<< "Movie Successfully Rented!\n";
+    			
+    			//insert pasok sa list ng rental yung ni-rent
         		found = true;
         		avail = true;
 				break;
@@ -539,22 +535,6 @@ void functions::RentMovie()
 		}
     }
     
-    for(miter = CustomerList.begin(); miter != CustomerList.end(); miter++)
-	{
-    	if (miter->id == cus)
-    	{
-    		if (avail == true)
-    		{
-    			miter->MovieID = s;
-    			miter->title = iter->title;
-			}
-		}
-		else
-		{
-			continue;
-		}
-	}
-
     if(found == false)
     {
     	cout<< "Sorry, the movie you are looking for does not exist in our list.\n";
@@ -564,7 +544,7 @@ void functions::RentMovie()
     //determines path at runtime
 		  #if _WIN32
 		  ofstream myfile;
-		  myfile.open("C:\\Users\\paturiko\\Documents\\github\\DSA-FMP\\MovieList.txt");
+		  myfile.open("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\MovieList.txt");
 		  #else
 		  ofstream myfile;
 		  myfile.open("/Users/chikashoki/Documents/GitHub/DSA-FMP/MovieList.txt");
@@ -626,7 +606,7 @@ void functions::ReturnMovie()
     //determines path at runtime
 		  #if _WIN32
 		  ofstream myfile;
-		  myfile.open("C:\\Users\\paturiko\\Documents\\github\\DSA-FMP\\MovieList.txt");
+		  myfile.open("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\MovieList.txt");
 		  #else
 		  ofstream myfile;
 		  myfile.open("/Users/chikashoki/Documents/GitHub/DSA-FMP/MovieList.txt");
@@ -710,7 +690,7 @@ void functions::imagehandler(string n)
 {
   //call location based on environment variable
   #if _WIN32
-	   string cmd("start C:\\Users\\paturiko\\Documents\\github\\DSA-FMP\\ImageGlass_8.0.12.8_x64\\ImageGlass.exe ");
+	   string cmd("start C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\ImageGlass_8.0.12.8_x64\\ImageGlass.exe ");
 	   cmd += n; //concatenate location and app based on Windows
     #elif __APPLE__
       string terminal("open /System/Applications/Preview.app ");
@@ -760,7 +740,7 @@ void functions::FromTextToList()
 
 	//determines path at runtime
 	  #if _WIN32
-	  ifstream myfile("C:\\Users\\paturiko\\Documents\\github\\DSA-FMP\\MovieList.txt");
+	  ifstream myfile("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\MovieList.txt");
 	  #else
 	  ifstream myfile("/Users/chikashoki/Documents/GitHub/DSA-FMP/MovieList.txt");
 	  #endif
@@ -791,7 +771,7 @@ void functions::FromTextToList()
 	            break;
 	          case 5:
 	          	#if _WIN32
-			    node.location = "C:\\Users\\paturiko\\Documents\\github\\DSA-FMP\\Posters\\";
+			    node.location = "C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\Posters\\";
 			    id = to_string(node.id);
 			    node.location += id;
 			    node.location += jpg;
@@ -830,12 +810,13 @@ void functions::FromTextToList()
 //Converts data from Customers.txt into a Queue list
 void functions::FromTexttoQueue()
 {
+	
 
 string line;
 
   //determines path at runtime
     #if _WIN32
-    ifstream myfile("C:\\Users\\paturiko\\Documents\\github\\DSA-FMP\\Customers.txt");
+    ifstream myfile("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\Customers.txt");
     #else
     ifstream myfile("/Users/chikashoki/Documents/GitHub/DSA-FMP/Customers.txt");
     #endif
@@ -937,7 +918,7 @@ void functions::AddCustomer()
 void functions::CustomerWriter()
 {
     #if _WIN32
-    ofstream myfile("C:\\Users\\paturiko\\Documents\\github\\DSA-FMP\\Customers.txt");
+    ofstream myfile("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\Customers.txt");
     #else
     ofstream myfile("/Users/chikashoki/Documents/GitHub/DSA-FMP/Customers.txt");
     #endif  
@@ -953,25 +934,21 @@ void functions::CustomerWriter()
 //Displays all of the Customers
 void functions::DisplayCustomer()
 {
-	int colwidth = 40;
-	cout<< "<<CUSTOMER LIST>>\n";
-	cout<< left << setw(colwidth) << "ID"
-	<< left << setw(colwidth) << "Name"
-	<< left << setw(colwidth) << "Address\n";
-	traversedCustomer(colwidth);
-	cout<< "\n\n";
-}
-
-//Traverses Linked list while displaying each node
-void functions::traversedCustomer(int m)
-{
-	for(miter = CustomerList.begin(); miter != CustomerList.end(); miter++)
-	{
-		cout<< endl;
-		cout<< setw(m) << miter->id;
-		cout<< setw(m) << miter->name;
-		cout<< setw(m) << miter->address;
-	}
+	int cus;
+	
+	cout<< "<<CUSTOMER INFO>>\n";
+	cout<< "Enter Customer ID to be displayed: ";
+	cin>> cus;
+	
+		for(miter = CustomerList.begin(); miter != CustomerList.end(); miter++)
+		{
+			if(miter->id == cus)
+			{
+				cout<< "Customer ID" << setw(10) << ": " << miter->id << endl;
+				cout<< "Name" << setw(17) << ": " << miter->name << endl;
+				cout<< "Address" << setw(14) << ": " << miter->address << endl;		
+			}
+		}
 }
 
 //Destructor for Customer
@@ -983,7 +960,7 @@ void functions::DelCustomer()
 	CustomerList.clear();
 	
 	#if _WIN32
-    ifstream myfile("C:\\Users\\paturiko\\Documents\\github\\DSA-FMP\\Customers.txt");
+    ifstream myfile("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\Customers.txt");
     #else
     ifstream myfile("/Users/chikashoki/Documents/GitHub/DSA-FMP/Customers.txt");
     #endif
@@ -1024,7 +1001,7 @@ void functions::DelCustomer()
 	}
 	
 	#if _WIN32
-    ofstream Myfile("C:\\Users\\paturiko\\Documents\\github\\DSA-FMP\\Customers.txt");
+    ofstream Myfile("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\Customers.txt");
     #else
     ofstream Myfile("/Users/chikashoki/Documents/GitHub/DSA-FMP/Customers.txt");
     #endif
@@ -1058,31 +1035,31 @@ void functions::DisplayRent()
 			cout<< "Customer ID: " << miter->id << "\t" << miter->name <<endl;
 		}
 	}
-		  #if _WIN32
-		  ofstream Myfile;
-		  Myfile.open("C:\\Users\\paturiko\\Documents\\github\\DSA-FMP\\Rent.txt");
-		  #else
-		  ofstream Myfile;
-		  Myfile.open("/Users/chikashoki/Documents/GitHub/DSA-FMP/Rent.txt");
-		  #endif
 	
-	cout<< "Enter Customer ID to be displayed: ";
-	cin>> cus;
-	for(miter = CustomerList.begin(); miter != CustomerList.end(); miter++)
-	{
-		if(miter->id == cus)
+	  #if _WIN32
+	  ofstream Myfile;
+	  Myfile.open("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\Rent.txt");
+	  #else
+	  ofstream Myfile;
+	  Myfile.open("/Users/chikashoki/Documents/GitHub/DSA-FMP/Rent.txt");
+	  #endif
+	
+	  cout<< "Enter Customer ID to be displayed: ";
+	  cin>> cus;
+		for(miter = CustomerList.begin(); miter != CustomerList.end(); miter++)
 		{
-			cout<< miter->name << endl;
-			cout<< miter->address << endl;
-			cout<<"Movies Rented" << endl;
-			cout<< miter->MovieID << "\t" << miter->title << endl;	
-			
-			Myfile<< "Customer ID: " << miter->id << endl;
-			Myfile<< "Customer Name: " << miter->name << endl;
-			Myfile<< "Customer Address: " << miter->address << endl;
-			Myfile<< miter->MovieID << "\t" << miter-> title << endl << endl;		
-		}
-	}
-		
+			if(miter->id == cus)
+			{
+				cout<< miter->name << endl;
+				cout<< miter->address << endl;
+				cout<<"Movies Rented" << endl;
+				cout<< miter->MovieID << "\t" << miter->title << endl;	
+				
+				Myfile<< "Customer ID: " << miter->id << endl;
+				Myfile<< "Customer Name: " << miter->name << endl;
+				Myfile<< "Customer Address: " << miter->address << endl;
+				Myfile<< miter->MovieID << "\t" << miter-> title << endl << endl;		
+			}
+		}	
 		Myfile.close();
 }

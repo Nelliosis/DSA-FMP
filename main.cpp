@@ -64,7 +64,7 @@ int main()
 	    break;
 
 	    case 7: //Customer maintenance
-			cout << "[1]Add a Customer\n[2]Customer List\n[3]Video Rent\nSelect an option: ";
+			cout << "[1]Add a Customer\n[2]Customer Info\n[3]Video Rent\nSelect an option: ";
 			cin >> cch;
 
 			switch(cch)
@@ -73,7 +73,7 @@ int main()
 				caller.AddCustomer();
 				break;
 
-				case 2: // Display List
+				case 2: // Display a customer
 				caller.DisplayCustomer();
 				break;
 
