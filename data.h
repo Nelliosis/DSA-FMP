@@ -26,11 +26,28 @@ struct MovieNode
 //Structure that holds customer information
 struct CustomerNode
 {
-  int id;
+  int 
+  		id, 
+  	    MovieID;
 
   std::string
         name,
-        address;
+        address,
+		title;
+};
+
+//Structure that holds customer rent information
+struct CustomerRent
+{
+  int
+  		id,
+  		MovieID;
+  		
+  std::string
+  		name,
+  		address,
+  		title;
+  		
 };
 
 //Declaration of STL linked List
@@ -68,6 +85,9 @@ class functions
       void AddCustomer();
       void DisplayCustomer();
       void traversedCustomer(int m);
+      void DelCustomer();
+      void CustomerWriter();
+      void DisplayRent();
 };
 
 //Function Definitions
@@ -474,8 +494,12 @@ void functions::AddMovie()
 //links copies value between customer and movie (operation: subtraction)
 void functions::RentMovie()
 {
-	//Insert Customer ID first here, wala pang functions customner ADT so blank muna
+	int cus;
+	cout<< "Enter Customer ID: ";
+	cin>> cus;
+	//Insert Customer ID first here
 	bool found = false;
+	bool avail = false;
 	int s;
 	cout<< "<<RENT A MOVIE>>\n";
 	cout<< "Enter Movie ID: ";
@@ -488,9 +512,17 @@ void functions::RentMovie()
         {
         	if(iter->copies > 0)
         	{
+        		
+        		cout<< "Movie to be rented: "<<endl;
+        		cout<< "Video ID" << setw(13) << ": " << iter->id << endl;
+				cout<< "Movie Title" << setw(10) << ": " << iter->title << endl;
+				cout<< "Genre" << setw(16) << ": " << iter->genre << endl;
+				cout<< "Production" << setw(11) << ": " << iter->prod << endl;
+				cout<< "Number of Copies" << setw(5) << ": " << iter->copies << endl << endl;
         		iter->copies -= 1;
     			cout<< "Movie Successfully Rented!\n";
         		found = true;
+        		avail = true;
 				break;
 			}
 
@@ -506,6 +538,22 @@ void functions::RentMovie()
 			continue;
 		}
     }
+    
+    for(miter = CustomerList.begin(); miter != CustomerList.end(); miter++)
+	{
+    	if (miter->id == cus)
+    	{
+    		if (avail == true)
+    		{
+    			miter->MovieID = s;
+    			miter->title = iter->title;
+			}
+		}
+		else
+		{
+			continue;
+		}
+	}
 
     if(found == false)
     {
@@ -864,9 +912,10 @@ bool functions::searchmov(int n)
     return found;
 }
 
+//Adds a customer into linked list and writes to Customer.txt
 void functions::AddCustomer()
 {
-  int CustomerSize = CustomerList.size()+1;
+  int CustomerSize = CustomerList.size();
   int catcher = 0;
   cout << "<ADD A CUSTOMER>\n\n";
 
@@ -880,10 +929,30 @@ void functions::AddCustomer()
   getline(cin,cnode.address);
 
   CustomerList.push_back(cnode);
-  //CustomerWriter();
+  
+  CustomerWriter();
 }
 
-void functions::DisplayCustomer(){
+//writes data to Customer.txt
+void functions::CustomerWriter()
+{
+    #if _WIN32
+    ofstream myfile("C:\\Users\\paturiko\\Documents\\github\\DSA-FMP\\Customers.txt");
+    #else
+    ofstream myfile("/Users/chikashoki/Documents/GitHub/DSA-FMP/Customers.txt");
+    #endif  
+	for (miter = CustomerList.begin(); miter != CustomerList.end(); miter++)
+	{
+		myfile<< miter->id << endl;
+		myfile<< miter->name << endl;
+		myfile<< miter->address << "\n\n";
+	}
+	myfile.close();
+}
+
+//Displays all of the Customers
+void functions::DisplayCustomer()
+{
 	int colwidth = 40;
 	cout<< "<<CUSTOMER LIST>>\n";
 	cout<< left << setw(colwidth) << "ID"
@@ -893,9 +962,9 @@ void functions::DisplayCustomer(){
 	cout<< "\n\n";
 }
 
+//Traverses Linked list while displaying each node
 void functions::traversedCustomer(int m)
 {
-
 	for(miter = CustomerList.begin(); miter != CustomerList.end(); miter++)
 	{
 		cout<< endl;
@@ -903,4 +972,117 @@ void functions::traversedCustomer(int m)
 		cout<< setw(m) << miter->name;
 		cout<< setw(m) << miter->address;
 	}
+}
+
+//Destructor for Customer
+void functions::DelCustomer()
+{
+	string line;
+	int reader = 0;
+
+	CustomerList.clear();
+	
+	#if _WIN32
+    ifstream myfile("C:\\Users\\paturiko\\Documents\\github\\DSA-FMP\\Customers.txt");
+    #else
+    ifstream myfile("/Users/chikashoki/Documents/GitHub/DSA-FMP/Customers.txt");
+    #endif
+	if(myfile.is_open())
+	{
+        int count = 0;
+        	while((getline(myfile,line)) && (reader < 40))
+        {
+        	reader++;
+        	  switch(count)
+          {
+            case 0:
+              cnode.id = stoi(line);
+            break;
+
+            case 1:
+              cnode.name = line;
+            break;
+
+            case 2:
+              cnode.address = line;
+            break;
+
+            default:
+            break;
+         	 }
+          if(count < 3)
+          {
+            count++;
+          }
+          else
+          {
+            count = 0;
+            CustomerList.push_back(cnode);
+          }
+        }
+        myfile.close();
+	}
+	
+	#if _WIN32
+    ofstream Myfile("C:\\Users\\paturiko\\Documents\\github\\DSA-FMP\\Customers.txt");
+    #else
+    ofstream Myfile("/Users/chikashoki/Documents/GitHub/DSA-FMP/Customers.txt");
+    #endif
+    
+	while(getline(myfile,line))
+	{
+		line.replace(line.find(reader),reader,"");
+		Myfile<< line <<endl;
+	}
+	
+		for (miter = CustomerList.begin(); miter != CustomerList.end(); miter++)
+	{
+		Myfile<< miter->id << endl;
+		Myfile<< miter->name << endl;
+		Myfile<< miter->address << "\n\n";
+	}
+	
+	Myfile.close();
+}
+
+//Displays all rented videos of a Customer
+void functions::DisplayRent()
+{
+	bool t = false;
+	int cus;
+	cout<< "All Customers that rented a movie: " << endl;
+	for(miter = CustomerList.begin(); miter != CustomerList.end(); miter++)
+	{
+		if(miter->MovieID)
+		{
+			cout<< "Customer ID: " << miter->id << "\t" << miter->name <<endl;
+		}
+	}
+		  #if _WIN32
+		  ofstream Myfile;
+		  Myfile.open("C:\\Users\\paturiko\\Documents\\github\\DSA-FMP\\Rent.txt");
+		  #else
+		  ofstream Myfile;
+		  Myfile.open("/Users/chikashoki/Documents/GitHub/DSA-FMP/Rent.txt");
+		  #endif
+	
+	cout<< "Enter Customer ID to be displayed: ";
+	cin>> cus;
+	for(miter = CustomerList.begin(); miter != CustomerList.end(); miter++)
+	{
+		if(miter->id == cus)
+		{
+			cout<< miter->name << endl;
+			cout<< miter->address << endl;
+			cout<<"Movies Rented" << endl;
+			cout<< miter->MovieID << "\t" << miter->title << endl;	
+			
+			Myfile<< "Customer ID: " << miter->id << endl;
+			Myfile<< "Customer Name: " << miter->name << endl;
+			Myfile<< "Customer Address: " << miter->address << endl;
+			Myfile<< miter->MovieID << "\t" << miter-> title << endl << endl;		
+		}
+	}
+		
+		Myfile.close();
 }
