@@ -8,7 +8,7 @@ Marvel Studios
 Captain Marvel
 Sci-Fi
 Marvel Studios
-5
+4
 
 103
 Godzilla
@@ -140,5 +140,11 @@ Paramount animation
 Spies in Disguise
 Comedy
 Blue Sky Studios
+5
+
+505
+Secret Life of Pets 2
+Comedy
+Illumination
 5
 

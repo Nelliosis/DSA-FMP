@@ -36,23 +36,25 @@ struct CustomerNode
 		title;
 };
 
-//Structure that holds customer rent information
-struct CustomerRent
+//class for customer rental info
+class RentInfo
 {
-  int id; 
-  list<int>MovieID;
+	public:
+		int CustomerRentID;
+		list<int> MovieID;
+		list<int>::iterator iter;
+	
 };
 
 //Declaration of STL linked List
 MovieNode node;
 CustomerNode cnode;
-CustomerRent crent;
 list<MovieNode> MovieList;
 list<MovieNode>::iterator iter;
 list<CustomerNode> CustomerList;
 list<CustomerNode>::iterator miter;
-list<CustomerRent> RentList;
-list<CustomerRent>::iterator niter;
+list<RentInfo> RentList;
+list<RentInfo>::iterator niter;
 
 //declaration of Number of Movies per Genre
 int posscifi = 5, scifi = 5;
@@ -490,13 +492,13 @@ void functions::AddMovie()
 //links copies value between customer and movie (operation: subtraction)
 void functions::RentMovie()
 {
-	int cus;
-	cout<< "Enter Customer ID: ";
-	cin>> cus;
-	//Insert Customer ID first here
+	int cus, s;
 	bool found = false;
 	bool avail = false;
-	int s;
+	
+	cout<< "Enter Customer ID: ";
+	cin>> cus;
+
 	cout<< "<<RENT A MOVIE>>\n";
 	cout<< "Enter Movie ID: ";
 	cin>> s;
@@ -516,9 +518,7 @@ void functions::RentMovie()
 				cout<< "Number of Copies" << setw(5) << ": " << iter->copies << endl << endl;
         		iter->copies -= 1;
     			cout<< "Movie Successfully Rented!\n";
-    			
-    			crent.id = cus;
-    			crent.MovieID.push_front()
+    		    			
         		found = true;
         		avail = true;
 				break;
@@ -541,8 +541,7 @@ void functions::RentMovie()
     {
     	cout<< "Sorry, the movie you are looking for does not exist in our list.\n";
 	}
-
-
+	
     //determines path at runtime
 		  #if _WIN32
 		  ofstream myfile;
@@ -561,6 +560,7 @@ void functions::RentMovie()
 	        myfile<< iter->copies << "\n\n";
     	  }
 		  myfile.close();
+		  
 }
 
 //links copies between customer and movie (opertion: addition)
