@@ -39,13 +39,17 @@ struct CustomerNode
 //class for customer rental info
 class RentInfo
 {
+public:
   int id;
   list<int>MovieID;
+  list<int>::iterator riter;
+
 };
 
 //Declaration of STL linked List
 MovieNode node;
 CustomerNode cnode;
+RentInfo rnode;;
 list<MovieNode> MovieList;
 list<MovieNode>::iterator iter;
 list<CustomerNode> CustomerList;
@@ -507,19 +511,30 @@ void functions::RentMovie()
         {
         	if(iter->copies > 0)
         	{
-        		cout<< "Movie to be rented: "<<endl;
-        		cout<< "Video ID" << setw(13) << ": " << iter->id << endl;
+    		cout<< "Movie to be rented: "<<endl;
+    		cout<< "Video ID" << setw(13) << ": " << iter->id << endl;
 				cout<< "Movie Title" << setw(10) << ": " << iter->title << endl;
 				cout<< "Genre" << setw(16) << ": " << iter->genre << endl;
 				cout<< "Production" << setw(11) << ": " << iter->prod << endl;
 				cout<< "Number of Copies" << setw(5) << ": " << iter->copies << endl << endl;
-        		iter->copies -= 1;
-    			cout<< "Movie Successfully Rented!\n";
-<<<<<<< HEAD
 
-=======
+          iter->copies -= 1;
 
->>>>>>> 6e0836bcbdc06c6ddbb103db33f2427494836a7c
+        cout<< "Movie Successfully Rented!\n";
+
+
+
+
+
+        rnode.id = cus;
+        rnode.MovieID.push_back(s);
+        RentList.push_back(rnode);
+
+
+
+
+
+
         		found = true;
         		avail = true;
 				break;
@@ -543,7 +558,7 @@ void functions::RentMovie()
     	cout<< "Sorry, the movie you are looking for does not exist in our list.\n";
 	}
 
-    //determines path at runtime
+    //writes changes into MovieList.txt
 		  #if _WIN32
 		  ofstream myfile;
 		  myfile.open("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\MovieList.txt");
@@ -561,6 +576,28 @@ void functions::RentMovie()
 	        myfile<< iter->copies << "\n\n";
     	  }
 		  myfile.close();
+
+      //writes changes into Rent.txt
+  		  #if _WIN32
+  		  ofstream myfile1;
+  		  myfile.open("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\Rent.txt");
+  		  #else
+  		  ofstream myfile1;
+  		  myfile.open("/Users/chikashoki/Documents/GitHub/DSA-FMP/Rent.txt");
+  		  #endif
+
+  		  for(niter = RentList.begin(); niter != RentList.end(); niter++)
+  		  {
+  	        myfile1 << niter->id << endl;
+
+            list<int>niterPtr = *niter;
+            for(riter = niterPtr.begin(); riter != niterPtr.end(); riter++)
+            {
+              myfile1 << riter.MovieID;
+            }
+
+      	  }
+  		  myfile1.close();
 
 }
 
