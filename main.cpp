@@ -11,7 +11,7 @@ int main()
 	cout << endl;
 
 	int ch;
-	char dec;
+	char dec, cdec;
 	functions caller;
 
 	//converts text data into linked list
@@ -64,7 +64,27 @@ int main()
 	    break;
 
 	    case 7: //Customer maintenance
-			caller.AddCustomer();
+			cout << "[1]Add a Customer\n[2]Customer List\n[3]Videos rented by Customer\nSelect an option: ";
+			cin >> cdec;
+
+			switch(cdec)
+			{
+				case 1: //add a customer
+				caller.AddCustomer();
+				break;
+
+				case 2: // Display List
+
+				break;
+
+				case 3: // Videos rented by customer
+
+				break;
+
+				default: // error
+
+				break;
+			}
 	    break;
 
 	    case 8:

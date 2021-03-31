@@ -38,7 +38,8 @@ MovieNode node;
 CustomerNode cnode;
 list<MovieNode> MovieList;
 list<MovieNode>::iterator iter;
-queue<CustomerNode> CustomerList;
+list<CustomerNode> CustomerList;
+list<MovieNode>::iterator miter;
 
 //declaration of Number of Movies per Genre
 int posscifi = 5, scifi = 5;
@@ -818,7 +819,7 @@ string line;
           else
           {
             count = 0;
-            CustomerList.push(cnode);
+            CustomerList.push_back(cnode);
           }
         }
         myfile.close();
@@ -876,6 +877,6 @@ void functions::AddCustomer()
   cout << "Address: ";
   getline(cin,cnode.address);
 
-  CustomerList.push(cnode);
+  CustomerList.push_back(cnode);
   //CustomerWriter();
 }
