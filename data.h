@@ -886,7 +886,7 @@ void functions::AddCustomer()
 void functions::DisplayCustomer(){
 	int colwidth = 40;
 	cout<< "<<CUSTOMER LIST>>\n";
-	cout<< left << setw(colwidth) << "Customer List"
+	cout<< left << setw(colwidth) << "ID"
 	<< left << setw(colwidth) << "Name"
 	<< left << setw(colwidth) << "Address\n";
 	traversedCustomer(colwidth);
@@ -895,7 +895,7 @@ void functions::DisplayCustomer(){
 
 void functions::traversedCustomer(int m)
 {
-	
+
 	for(miter = CustomerList.begin(); miter != CustomerList.end(); miter++)
 	{
 		cout<< endl;

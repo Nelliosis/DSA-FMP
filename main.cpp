@@ -10,8 +10,8 @@ int main()
 {
 	cout << endl;
 
-	int ch;
-	char dec, cdec;
+	int ch, cch;
+	char dec;
 	functions caller;
 
 	//converts text data into linked list
@@ -65,9 +65,9 @@ int main()
 
 	    case 7: //Customer maintenance
 			cout << "[1]Add a Customer\n[2]Customer List\n[3]Videos rented by Customer\nSelect an option: ";
-			cin >> cdec;
+			cin >> cch;
 
-			switch(cdec)
+			switch(cch)
 			{
 				case 1: //add a customer
 				caller.AddCustomer();
