@@ -39,7 +39,7 @@ CustomerNode cnode;
 list<MovieNode> MovieList;
 list<MovieNode>::iterator iter;
 list<CustomerNode> CustomerList;
-list<MovieNode>::iterator miter;
+list<CustomerNode>::iterator miter;
 
 //declaration of Number of Movies per Genre
 int posscifi = 5, scifi = 5;
@@ -63,9 +63,11 @@ class functions
 	  void imagehandler(string n);
 	  void traversedisplay(int i);
 	  void FromTextToList();
-    void FromTexttoQueue();
+      void FromTexttoQueue();
 	  bool searchmov(int n);
-    void AddCustomer();
+      void AddCustomer();
+      void DisplayCustomer();
+      void traversedCustomer(int m);
 };
 
 //Function Definitions
@@ -111,7 +113,7 @@ void functions::AddMovie()
 		node.copies = ncopies;
 
 		#if _WIN32
-			node.location = "C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\Posters\\";
+			node.location = "C:\\Users\\paturiko\\Documents\\github\\DSA-FMP\\Posters\\";
 			id = to_string(node.id);
 			node.location += id;
 			node.location += jpg;
@@ -140,7 +142,7 @@ void functions::AddMovie()
 		//determines path at runtime
 		  #if _WIN32
 		  ofstream myfile;
-		  myfile.open("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\MovieList.txt");
+		  myfile.open("C:\\Users\\paturiko\\Documents\\github\\DSA-FMP\\MovieList.txt");
 		  #else
 		  ofstream myfile;
 		  myfile.open("/Users/chikashoki/Documents/GitHub/DSA-FMP/MovieList.txt");
@@ -177,7 +179,7 @@ void functions::AddMovie()
 		node.copies = ncopies;
 
 		#if _WIN32
-			node.location = "C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\Posters\\";
+			node.location = "C:\\Users\\paturiko\\Documents\\github\\DSA-FMP\\Posters\\";
 			id = to_string(node.id);
 			node.location += id;
 			node.location += jpg;
@@ -204,7 +206,7 @@ void functions::AddMovie()
 		//determines path at runtime
 		  #if _WIN32
 		  ofstream myfile;
-		  myfile.open("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\MovieList.txt");
+		  myfile.open("C:\\Users\\paturiko\\Documents\\github\\DSA-FMP\\MovieList.txt");
 		  #else
 		  ofstream myfile;
 		  myfile.open("/Users/chikashoki/Documents/GitHub/DSA-FMP/MovieList.txt");
@@ -241,7 +243,7 @@ void functions::AddMovie()
 		node.copies = ncopies;
 
 		#if _WIN32
-			node.location = "C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\Posters\\";
+			node.location = "C:\\Users\\paturiko\\Documents\\github\\DSA-FMP\\Posters\\";
 			id = to_string(node.id);
 			node.location += id;
 			node.location += jpg;
@@ -267,7 +269,7 @@ void functions::AddMovie()
 		//determines path at runtime
 		  #if _WIN32
 		  ofstream myfile;
-		  myfile.open("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\MovieList.txt");
+		  myfile.open("C:\\Users\\paturiko\\Documents\\github\\DSA-FMP\\MovieList.txt");
 		  #else
 		  ofstream myfile;
 		  myfile.open("/Users/chikashoki/Documents/GitHub/DSA-FMP/MovieList.txt");
@@ -304,7 +306,7 @@ void functions::AddMovie()
 		node.copies = ncopies;
 
 		#if _WIN32
-			node.location = "C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\Posters\\";
+			node.location = "C:\\Users\\paturiko\\Documents\\github\\DSA-FMP\\Posters\\";
 			id = to_string(node.id);
 			node.location += id;
 			node.location += jpg;
@@ -329,7 +331,7 @@ void functions::AddMovie()
 		//determines path at runtime
 		  #if _WIN32
 		  ofstream myfile;
-		  myfile.open("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\MovieList.txt");
+		  myfile.open("C:\\Users\\paturiko\\Documents\\github\\DSA-FMP\\MovieList.txt");
 		  #else
 		  ofstream myfile;
 		  myfile.open("/Users/chikashoki/Documents/GitHub/DSA-FMP/MovieList.txt");
@@ -376,7 +378,7 @@ void functions::AddMovie()
 		posnewgenre++;
 
 		#if _WIN32
-			node.location = "C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\Posters\\";
+			node.location = "C:\\Users\\paturiko\\Documents\\github\\DSA-FMP\\Posters\\";
 			id = to_string(node.id);
 			node.location += id;
 			node.location += jpg;
@@ -390,7 +392,7 @@ void functions::AddMovie()
 		//determines path at runtime
 		  #if _WIN32
 		  ofstream myfile;
-		  myfile.open("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\MovieList.txt");
+		  myfile.open("C:\\Users\\paturiko\\Documents\\github\\DSA-FMP\\MovieList.txt");
 		  #else
 		  ofstream myfile;
 		  myfile.open("/Users/chikashoki/Documents/GitHub/DSA-FMP/MovieList.txt");
@@ -428,7 +430,7 @@ void functions::AddMovie()
 		node.copies = ncopies;
 
 		#if _WIN32
-			node.location = "C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\Posters\\";
+			node.location = "C:\\Users\\paturiko\\Documents\\github\\DSA-FMP\\Posters\\";
 			id = to_string(node.id);
 			node.location += id;
 			node.location += jpg;
@@ -451,7 +453,7 @@ void functions::AddMovie()
 		//determines path at runtime
 		  #if _WIN32
 		  ofstream myfile;
-		  myfile.open("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\MovieList.txt");
+		  myfile.open("C:\\Users\\paturiko\\Documents\\github\\DSA-FMP\\MovieList.txt");
 		  #else
 		  ofstream myfile;
 		  myfile.open("/Users/chikashoki/Documents/GitHub/DSA-FMP/MovieList.txt");
@@ -514,7 +516,7 @@ void functions::RentMovie()
     //determines path at runtime
 		  #if _WIN32
 		  ofstream myfile;
-		  myfile.open("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\MovieList.txt");
+		  myfile.open("C:\\Users\\paturiko\\Documents\\github\\DSA-FMP\\MovieList.txt");
 		  #else
 		  ofstream myfile;
 		  myfile.open("/Users/chikashoki/Documents/GitHub/DSA-FMP/MovieList.txt");
@@ -576,7 +578,7 @@ void functions::ReturnMovie()
     //determines path at runtime
 		  #if _WIN32
 		  ofstream myfile;
-		  myfile.open("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\MovieList.txt");
+		  myfile.open("C:\\Users\\paturiko\\Documents\\github\\DSA-FMP\\MovieList.txt");
 		  #else
 		  ofstream myfile;
 		  myfile.open("/Users/chikashoki/Documents/GitHub/DSA-FMP/MovieList.txt");
@@ -660,7 +662,7 @@ void functions::imagehandler(string n)
 {
   //call location based on environment variable
   #if _WIN32
-	   string cmd("start C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\ImageGlass_8.0.12.8_x64\\ImageGlass.exe ");
+	   string cmd("start C:\\Users\\paturiko\\Documents\\github\\DSA-FMP\\ImageGlass_8.0.12.8_x64\\ImageGlass.exe ");
 	   cmd += n; //concatenate location and app based on Windows
     #elif __APPLE__
       string terminal("open /System/Applications/Preview.app ");
@@ -710,7 +712,7 @@ void functions::FromTextToList()
 
 	//determines path at runtime
 	  #if _WIN32
-	  ifstream myfile("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\MovieList.txt");
+	  ifstream myfile("C:\\Users\\paturiko\\Documents\\github\\DSA-FMP\\MovieList.txt");
 	  #else
 	  ifstream myfile("/Users/chikashoki/Documents/GitHub/DSA-FMP/MovieList.txt");
 	  #endif
@@ -741,7 +743,7 @@ void functions::FromTextToList()
 	            break;
 	          case 5:
 	          	#if _WIN32
-			    node.location = "C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\Posters\\";
+			    node.location = "C:\\Users\\paturiko\\Documents\\github\\DSA-FMP\\Posters\\";
 			    id = to_string(node.id);
 			    node.location += id;
 			    node.location += jpg;
@@ -785,7 +787,7 @@ string line;
 
   //determines path at runtime
     #if _WIN32
-    ifstream myfile("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\Customers.txt");
+    ifstream myfile("C:\\Users\\paturiko\\Documents\\github\\DSA-FMP\\Customers.txt");
     #else
     ifstream myfile("/Users/chikashoki/Documents/GitHub/DSA-FMP/Customers.txt");
     #endif
@@ -879,4 +881,26 @@ void functions::AddCustomer()
 
   CustomerList.push_back(cnode);
   //CustomerWriter();
+}
+
+void functions::DisplayCustomer(){
+	int colwidth = 40;
+	cout<< "<<CUSTOMER LIST>>\n";
+	cout<< left << setw(colwidth) << "Customer List"
+	<< left << setw(colwidth) << "Name"
+	<< left << setw(colwidth) << "Address\n";
+	traversedCustomer(colwidth);
+	cout<< "\n\n";
+}
+
+void functions::traversedCustomer(int m)
+{
+	
+	for(miter = CustomerList.begin(); miter != CustomerList.end(); miter++)
+	{
+		cout<< endl;
+		cout<< setw(m) << miter->id;
+		cout<< setw(m) << miter->name;
+		cout<< setw(m) << miter->address;
+	}
 }

@@ -74,7 +74,7 @@ int main()
 				break;
 
 				case 2: // Display List
-
+				caller.DisplayCustomer();
 				break;
 
 				case 3: // Videos rented by customer
