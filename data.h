@@ -39,7 +39,8 @@ struct CustomerNode
 //Structure that holds customer rent information
 struct CustomerRent
 {
-  int id, MovieID;
+  int id; 
+  list<int>MovieID;
 };
 
 //Declaration of STL linked List
@@ -516,7 +517,8 @@ void functions::RentMovie()
         		iter->copies -= 1;
     			cout<< "Movie Successfully Rented!\n";
     			
-    			//insert pasok sa list ng rental yung ni-rent
+    			crent.id = cus;
+    			crent.MovieID.push_front()
         		found = true;
         		avail = true;
 				break;
