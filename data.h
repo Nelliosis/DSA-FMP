@@ -26,8 +26,8 @@ struct MovieNode
 //Structure that holds customer information
 struct CustomerNode
 {
-  int 
-  		id, 
+  int
+  		id,
   	    MovieID;
 
   std::string
@@ -39,7 +39,7 @@ struct CustomerNode
 //Structure that holds customer rent information
 struct CustomerRent
 {
-  int id; 
+  int id;
   list<int>MovieID;
 };
 
@@ -516,9 +516,7 @@ void functions::RentMovie()
 				cout<< "Number of Copies" << setw(5) << ": " << iter->copies << endl << endl;
         		iter->copies -= 1;
     			cout<< "Movie Successfully Rented!\n";
-    			
-    			crent.id = cus;
-    			crent.MovieID.push_front()
+    	
         		found = true;
         		avail = true;
 				break;
@@ -536,7 +534,7 @@ void functions::RentMovie()
 			continue;
 		}
     }
-    
+
     if(found == false)
     {
     	cout<< "Sorry, the movie you are looking for does not exist in our list.\n";
@@ -812,7 +810,7 @@ void functions::FromTextToList()
 //Converts data from Customers.txt into a Queue list
 void functions::FromTexttoQueue()
 {
-	
+
 
 string line;
 
@@ -912,7 +910,7 @@ void functions::AddCustomer()
   getline(cin,cnode.address);
 
   CustomerList.push_back(cnode);
-  
+
   CustomerWriter();
 }
 
@@ -923,7 +921,7 @@ void functions::CustomerWriter()
     ofstream myfile("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\Customers.txt");
     #else
     ofstream myfile("/Users/chikashoki/Documents/GitHub/DSA-FMP/Customers.txt");
-    #endif  
+    #endif
 	for (miter = CustomerList.begin(); miter != CustomerList.end(); miter++)
 	{
 		myfile<< miter->id << endl;
@@ -937,18 +935,18 @@ void functions::CustomerWriter()
 void functions::DisplayCustomer()
 {
 	int cus;
-	
+
 	cout<< "<<CUSTOMER INFO>>\n";
 	cout<< "Enter Customer ID to be displayed: ";
 	cin>> cus;
-	
+
 		for(miter = CustomerList.begin(); miter != CustomerList.end(); miter++)
 		{
 			if(miter->id == cus)
 			{
 				cout<< "Customer ID" << setw(10) << ": " << miter->id << endl;
 				cout<< "Name" << setw(17) << ": " << miter->name << endl;
-				cout<< "Address" << setw(14) << ": " << miter->address << endl;		
+				cout<< "Address" << setw(14) << ": " << miter->address << endl;
 			}
 		}
 }
@@ -960,7 +958,7 @@ void functions::DelCustomer()
 	int reader = 0;
 
 	CustomerList.clear();
-	
+
 	#if _WIN32
     ifstream myfile("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\Customers.txt");
     #else
@@ -1001,26 +999,26 @@ void functions::DelCustomer()
         }
         myfile.close();
 	}
-	
+
 	#if _WIN32
     ofstream Myfile("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\Customers.txt");
     #else
     ofstream Myfile("/Users/chikashoki/Documents/GitHub/DSA-FMP/Customers.txt");
     #endif
-    
+
 	while(getline(myfile,line))
 	{
 		line.replace(line.find(reader),reader,"");
 		Myfile<< line <<endl;
 	}
-	
+
 		for (miter = CustomerList.begin(); miter != CustomerList.end(); miter++)
 	{
 		Myfile<< miter->id << endl;
 		Myfile<< miter->name << endl;
 		Myfile<< miter->address << "\n\n";
 	}
-	
+
 	Myfile.close();
 }
 
@@ -1037,7 +1035,7 @@ void functions::DisplayRent()
 			cout<< "Customer ID: " << miter->id << "\t" << miter->name <<endl;
 		}
 	}
-	
+
 	  #if _WIN32
 	  ofstream Myfile;
 	  Myfile.open("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\Rent.txt");
@@ -1045,7 +1043,7 @@ void functions::DisplayRent()
 	  ofstream Myfile;
 	  Myfile.open("/Users/chikashoki/Documents/GitHub/DSA-FMP/Rent.txt");
 	  #endif
-	
+
 	  cout<< "Enter Customer ID to be displayed: ";
 	  cin>> cus;
 		for(miter = CustomerList.begin(); miter != CustomerList.end(); miter++)
@@ -1055,13 +1053,13 @@ void functions::DisplayRent()
 				cout<< miter->name << endl;
 				cout<< miter->address << endl;
 				cout<<"Movies Rented" << endl;
-				cout<< miter->MovieID << "\t" << miter->title << endl;	
-				
+				cout<< miter->MovieID << "\t" << miter->title << endl;
+
 				Myfile<< "Customer ID: " << miter->id << endl;
 				Myfile<< "Customer Name: " << miter->name << endl;
 				Myfile<< "Customer Address: " << miter->address << endl;
-				Myfile<< miter->MovieID << "\t" << miter-> title << endl << endl;		
+				Myfile<< miter->MovieID << "\t" << miter-> title << endl << endl;
 			}
-		}	
+		}
 		Myfile.close();
 }
