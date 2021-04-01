@@ -6,6 +6,8 @@
 #include <cstdlib>
 #include <cstring>
 #include <queue>
+#include <algorithm>
+#include <vector>
 
 using namespace std;
 
@@ -27,43 +29,41 @@ struct MovieNode
 struct CustomerNode
 {
   int
-  		id,
-  	    MovieID;
-
+  		id;
+  		
   std::string
         name,
-        address,
-		title;
+        address;
 };
 
 //class for customer rental info
 class RentInfo
 {
-public:
-  int id;
-  list<int>MovieID;
-  list<int>::iterator riter;
-
+	public:
+	  int 
+	  	cid, 
+	  	mid;
 };
 
-//Declaration of STL linked List
+//Declaration of Linked List for MovieList, CustomerList, and vector for RentalInfo
 MovieNode node;
 CustomerNode cnode;
-RentInfo rnode;;
+RentInfo rnode;
 list<MovieNode> MovieList;
 list<MovieNode>::iterator iter;
 list<CustomerNode> CustomerList;
 list<CustomerNode>::iterator miter;
-list<RentInfo> RentList;
-list<RentInfo>::iterator niter;
+vector< pair <int,int> > RentalInfo;
+vector< pair <int,int> >::iterator it;
 
-//declaration of Number of Movies per Genre
+//declaration of Number of Movies per Genre, number of Movies rented by Customer
 int posscifi = 5, scifi = 5;
 int poshorror = 10, horror = 5;
 int posromance = 15, romance = 5;
 int posaction = 20, action = 5;
 int poscomedy = 25, comedy = 5;
 int posnewgenre = 25, newgenre =0;
+int rentalnumber = 0;
 
 //Functions
 class functions
@@ -78,15 +78,16 @@ class functions
 	  bool decision(char);
 	  void imagehandler(string n);
 	  void traversedisplay(int i);
-	  void FromTextToList();
-      void FromTexttoQueue();
+	  void FromTextToMovieList();
+      void FromTextToCustomerList();
 	  bool searchmov(int n);
       void AddCustomer();
       void DisplayCustomer();
       void traversedCustomer(int m);
-      void DelCustomer();
-      void CustomerWriter();
       void DisplayRent();
+      void FromTextToRentalInfo();
+      void DisplayCustomerRentalInfo();
+      void UpdateTextFiles();
 };
 
 //Function Definitions
@@ -156,26 +157,6 @@ void functions::AddMovie()
 		posaction++;
 		poscomedy++;
 		posnewgenre++;
-
-
-		//determines path at runtime
-		  #if _WIN32
-		  ofstream myfile;
-		  myfile.open("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\MovieList.txt");
-		  #else
-		  ofstream myfile;
-		  myfile.open("/Users/chikashoki/Documents/GitHub/DSA-FMP/MovieList.txt");
-		  #endif
-
-		  for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
-		  {
-	        myfile<< iter->id << endl;
-	        myfile<< iter->title << endl;
-	        myfile<< iter->genre << endl;
-	        myfile<< iter->prod << endl;
-	        myfile<< iter->copies << "\n\n";
-    	  }
-		  myfile.close();
 	}
 
 	else if(ngenre == 2)
@@ -221,25 +202,6 @@ void functions::AddMovie()
 		posaction++;
 		poscomedy++;
 		posnewgenre++;
-
-		//determines path at runtime
-		  #if _WIN32
-		  ofstream myfile;
-		  myfile.open("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\MovieList.txt");
-		  #else
-		  ofstream myfile;
-		  myfile.open("/Users/chikashoki/Documents/GitHub/DSA-FMP/MovieList.txt");
-		  #endif
-
-		  for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
-		  {
-	        myfile<< iter->id << endl;
-	        myfile<< iter->title << endl;
-	        myfile<< iter->genre << endl;
-	        myfile<< iter->prod << endl;
-	        myfile<< iter->copies << "\n\n";
-    	  }
-		  myfile.close();
 	}
 
 	else if(ngenre == 3)
@@ -284,25 +246,6 @@ void functions::AddMovie()
 		posaction++;
 		poscomedy++;
 		posnewgenre++;
-
-		//determines path at runtime
-		  #if _WIN32
-		  ofstream myfile;
-		  myfile.open("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\MovieList.txt");
-		  #else
-		  ofstream myfile;
-		  myfile.open("/Users/chikashoki/Documents/GitHub/DSA-FMP/MovieList.txt");
-		  #endif
-
-		  for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
-		  {
-	        myfile<< iter->id << endl;
-	        myfile<< iter->title << endl;
-	        myfile<< iter->genre << endl;
-	        myfile<< iter->prod << endl;
-	        myfile<< iter->copies << "\n\n";
-    	  }
-		  myfile.close();
 	}
 
 	else if(ngenre == 4)
@@ -346,25 +289,6 @@ void functions::AddMovie()
 		posaction++;
 		poscomedy++;
 		posnewgenre++;
-
-		//determines path at runtime
-		  #if _WIN32
-		  ofstream myfile;
-		  myfile.open("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\MovieList.txt");
-		  #else
-		  ofstream myfile;
-		  myfile.open("/Users/chikashoki/Documents/GitHub/DSA-FMP/MovieList.txt");
-		  #endif
-
-		  for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
-		  {
-	        myfile<< iter->id << endl;
-	        myfile<< iter->title << endl;
-	        myfile<< iter->genre << endl;
-	        myfile<< iter->prod << endl;
-	        myfile<< iter->copies << "\n\n";
-    	  }
-		  myfile.close();
 	}
 
 	else if(ngenre == 5)
@@ -407,25 +331,6 @@ void functions::AddMovie()
 		    node.location += id;
 		    node.location += jpg;
 		#endif
-
-		//determines path at runtime
-		  #if _WIN32
-		  ofstream myfile;
-		  myfile.open("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\MovieList.txt");
-		  #else
-		  ofstream myfile;
-		  myfile.open("/Users/chikashoki/Documents/GitHub/DSA-FMP/MovieList.txt");
-		  #endif
-
-		  for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
-		  {
-	        myfile<< iter->id << endl;
-	        myfile<< iter->title << endl;
-	        myfile<< iter->genre << endl;
-	        myfile<< iter->prod << endl;
-	        myfile<< iter->copies << "\n\n";
-    	  }
-		  myfile.close();
 	}
 
 	else if(ngenre == 6)
@@ -468,25 +373,6 @@ void functions::AddMovie()
 		}
 		MovieList.insert(iter, node);
 		posnewgenre++;
-
-		//determines path at runtime
-		  #if _WIN32
-		  ofstream myfile;
-		  myfile.open("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\MovieList.txt");
-		  #else
-		  ofstream myfile;
-		  myfile.open("/Users/chikashoki/Documents/GitHub/DSA-FMP/MovieList.txt");
-		  #endif
-
-		  for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
-		  {
-	        myfile<< iter->id << endl;
-	        myfile<< iter->title << endl;
-	        myfile<< iter->genre << endl;
-	        myfile<< iter->prod << endl;
-	        myfile<< iter->copies << "\n\n";
-    	  }
-		  myfile.close();
 	}
 }
 
@@ -494,173 +380,176 @@ void functions::AddMovie()
 void functions::RentMovie()
 {
 	int cus, s;
+	int i = 0;
+	string name;
 	bool found = false;
-	bool avail = false;
+	bool foundc = false;
 
 	cout<< "Enter Customer ID: ";
 	cin>> cus;
 
-	cout<< "<<RENT A MOVIE>>\n";
-	cout<< "Enter Movie ID: ";
-	cin>> s;
-
-	for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
-    {
-	//if the Node ID matches the search ID display movie info
-        if (iter->id == s)
-        {
-        	if(iter->copies > 0)
-        	{
-    		cout<< "Movie to be rented: "<<endl;
-    		cout<< "Video ID" << setw(13) << ": " << iter->id << endl;
-				cout<< "Movie Title" << setw(10) << ": " << iter->title << endl;
-				cout<< "Genre" << setw(16) << ": " << iter->genre << endl;
-				cout<< "Production" << setw(11) << ": " << iter->prod << endl;
-				cout<< "Number of Copies" << setw(5) << ": " << iter->copies << endl << endl;
-
-          iter->copies -= 1;
-
-        cout<< "Movie Successfully Rented!\n";
-
-
-
-
-
-        rnode.id = cus;
-        rnode.MovieID.push_back(s);
-        RentList.push_back(rnode);
-
-
-
-
-
-
-        		found = true;
-        		avail = true;
-				break;
-			}
-
-			else
-			{
-				cout<< "Sorry, the movie you are trying to rent has no copies available as of this moment.\n";
-				found = true;
-			}
+	for(miter = CustomerList.begin(); miter != CustomerList.end(); miter++)
+	{
+		if(miter->id == cus)
+		{
+			name = miter->name;	
+			foundc = true;
 		}
-
+		
 		else
 		{
 			continue;
 		}
-    }
-
-    if(found == false)
-    {
-    	cout<< "Sorry, the movie you are looking for does not exist in our list.\n";
 	}
 
-    //writes changes into MovieList.txt
-		  #if _WIN32
-		  ofstream myfile;
-		  myfile.open("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\MovieList.txt");
-		  #else
-		  ofstream myfile;
-		  myfile.open("/Users/chikashoki/Documents/GitHub/DSA-FMP/MovieList.txt");
-		  #endif
-
-		  for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
-		  {
-	        myfile<< iter->id << endl;
-	        myfile<< iter->title << endl;
-	        myfile<< iter->genre << endl;
-	        myfile<< iter->prod << endl;
-	        myfile<< iter->copies << "\n\n";
-    	  }
-		  myfile.close();
-
-      //writes changes into Rent.txt
-  		  #if _WIN32
-  		  ofstream myfile1;
-  		  myfile.open("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\Rent.txt");
-  		  #else
-  		  ofstream myfile1;
-  		  myfile.open("/Users/chikashoki/Documents/GitHub/DSA-FMP/Rent.txt");
-  		  #endif
-
-  		  for(niter = RentList.begin(); niter != RentList.end(); niter++)
-  		  {
-  	        myfile1 << niter->id << endl;
-
-            list<int>niterPtr = *niter;
-            for(riter = niterPtr.begin(); riter != niterPtr.end(); riter++)
-            {
-              myfile1 << riter.MovieID;
-            }
-
-      	  }
-  		  myfile1.close();
-
-}
+	if(foundc == true)
+    {
+		cout<< "<<RENT A MOVIE>>\n";
+		cout<< "Enter Movie ID: ";
+		cin>> s;
+		
+		for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
+	    {
+		//if the Node ID matches the search ID display movie info
+	        if (iter->id == s)
+	        {
+	        	if(iter->copies > 0)
+	        	{
+	    			cout<< "Movie to be rented: "<<endl;
+	    			cout<< "Video ID" << setw(13) << ": " << iter->id << endl;
+					cout<< "Movie Title" << setw(10) << ": " << iter->title << endl;
+					cout<< "Genre" << setw(16) << ": " << iter->genre << endl;
+					cout<< "Production" << setw(11) << ": " << iter->prod << endl;
+					cout<< "Number of Copies" << setw(5) << ": " << iter->copies << endl << endl;
+	          		iter->copies -= 1;
+	          		
+	          		cout<< "Movie rented to Customer: \n";
+	          		cout<< "Customer ID: " << cus << "\n";
+	          		cout<< "Customer name: " << name << "\n\n";
+					cout<< "Movie Successfully Rented!\n";
+				
+					RentalInfo.push_back(make_pair(cus, s));
+	        		found = true;
+	        		break;
+				}
+	
+				else
+				{
+					cout<< "Sorry, the movie you are trying to rent has no copies available as of this moment.\n";
+					found = true;
+					break;
+				}
+			}
+	
+			else
+			{
+				continue;
+			}
+	    }
+	}
+	
+	else
+	{
+		cout<< "ERROR. Please enter valid Customer ID.\n";
+	}
+    
+}	
 
 //links copies between customer and movie (opertion: addition)
 void functions::ReturnMovie()
 {
-	//Insert Customer ID first here, wala pang functions customner ADT so blank muna
+	int cus, s;
+	string name;
 	bool found = false;
-	int s;
+	bool foundc = false;
+	bool foundr = false;
+	
+	cout<< "Enter Customer ID: ";
+	cin>> cus;
+	
 	cout<< "<<RETURN A MOVIE>>\n";
 	cout<< "Enter Movie ID: ";
 	cin>> s;
+	
+	sort(RentalInfo.begin(), RentalInfo.end());
 
-	for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
-    {
-	//if the Node ID matches the search ID display movie info
-        if (iter->id == s)
-        {
-        	if(iter->copies > 0)
-        	{
-        		iter->copies += 1;
-    			cout<< "Movie Successfully Returned!\n";
-        		found = true;
+	for(miter = CustomerList.begin(); miter != CustomerList.end(); miter++)
+	{
+		if(miter->id == cus)
+		{
+			name = miter->name;	
+			foundc = true;
+			break;
+		}
+	}
+	
+	
+	for(int i = 0; i < RentalInfo.size(); i++)
+	{
+		if(cus == RentalInfo[i].first && s == RentalInfo[i].second)
+		{
+			foundr = true;
+			break;
+		}
+	}
+	
+	
+	
+	if(foundc == true && foundr == true)
+	{
+		for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
+	    {
+		//if the Node ID matches the search ID display movie info
+	    	if (iter->id == s)
+	        {					  			
+	        	it = RentalInfo.begin();
+	 			for(int i = 0; i < RentalInfo.size(); i++)
+				{						
+					if(RentalInfo[i].first == cus && RentalInfo[i].second == s)
+					{
+						RentalInfo.erase(it);
+						break;
+					}
+
+					it++;
+				}
+				
+				iter->copies += 1;
+				it = RentalInfo.begin();
+				found = true;
+				
+				cout<< endl;
+				cout<< "Customer Return Info: " << "\n\n";
+				cout<< "Customer ID: " << cus << endl;
+				cout<< "Customer Name: " << name << endl;
+				cout<< "Movie ID: " << s << endl;
+				cout<< "Movie Title: " << iter->title << endl;
+		        cout<< "Movie Successfully Returned!\n";
 				break;
 			}
-
+	
 			else
 			{
-				cout<< "Sorry, the movie you are trying to rent has no copies available as of this moment.\n";
-				found = true;
+				continue;
 			}
-		}
+	    }
 
-		else
-		{
-			continue;
-		}
-    }
-
-    if(found == false)
-    {
-    	cout<< "Sorry, the movie you are looking for does not exist in our list.\n";
+	    if(found == false)
+	    {
+	    	cout<< "Sorry, the movie you are looking for does not exist in our list.\n";
+		}	 		 
+	
 	}
-
-
-    //determines path at runtime
-		  #if _WIN32
-		  ofstream myfile;
-		  myfile.open("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\MovieList.txt");
-		  #else
-		  ofstream myfile;
-		  myfile.open("/Users/chikashoki/Documents/GitHub/DSA-FMP/MovieList.txt");
-		  #endif
-
-		  for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
-		  {
-	        myfile<< iter->id << endl;
-	        myfile<< iter->title << endl;
-	        myfile<< iter->genre << endl;
-	        myfile<< iter->prod << endl;
-	        myfile<< iter->copies << "\n\n";
-    	  }
-		  myfile.close();
+	
+	else if(foundc == false)
+	{
+		cout<< "ERROR. Please enter valid Customer ID.\n";
+	}
+	
+	else if(foundc == true && foundr == false)
+	{
+		cout<< "ERROR. This particular Customer has not rented any movies.\n";
+	}
 }
 
 //Displays a single movie's info by searching its ID
@@ -770,10 +659,10 @@ void functions::traversedisplay(int i)
 }
 
 //Converts data from MovieList.txt to a Linked list
-void functions::FromTextToList()
+void functions::FromTextToMovieList()
 {
 	//Variable Declarations
-	string line;
+	string line1;
 	string jpg = ".jpg";
 	string id;
 
@@ -789,25 +678,25 @@ void functions::FromTextToList()
 	    if (myfile.is_open())
 	    {
 	      int count = 0;
-	      while ( getline (myfile,line) )
+	      while ( getline (myfile,line1) )
 	      {
 	        //count determines which line getfile is at the current node
 	        switch(count)
 	        {
 	          case 0:
-	          node.id = stoi(line);
+	          node.id = stoi(line1);
 	            break;
 	          case 1:
-	            node.title = line;
+	            node.title = line1;
 	            break;
 	          case 2:
-	          node.genre = line;
+	          node.genre = line1;
 	            break;
 	          case 3:
-	          node.prod = line;
+	          node.prod = line1;
 	            break;
 	          case 4:
-	          node.copies = stoi(line);
+	          node.copies = stoi(line1);
 	            break;
 	          case 5:
 	          	#if _WIN32
@@ -844,17 +733,16 @@ void functions::FromTextToList()
 	    }
 
 	    else cout << "Unable to open file" << endl;
-	//end of text to list function
+	//end of text to MovieList function
 }
 
 //Converts data from Customers.txt into a Queue list
-void functions::FromTexttoQueue()
+void functions::FromTextToCustomerList()
 {
 
+	string line;
 
-string line;
-
-  //determines path at runtime
+  	//determines path at runtime
     #if _WIN32
     ifstream myfile("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\Customers.txt");
     #else
@@ -900,8 +788,7 @@ string line;
       cout << "Unable to open file" << endl;
     }
 
-    //end of text to queue function
-
+    //end of text to Cutsomer List function
 }
 
 //Used to Search for a certain movie using its Movie ID
@@ -936,39 +823,20 @@ bool functions::searchmov(int n)
 //Adds a customer into linked list and writes to Customer.txt
 void functions::AddCustomer()
 {
-  int CustomerSize = CustomerList.size();
-  int catcher = 0;
-  cout << "<ADD A CUSTOMER>\n\n";
+	int CustomerSize = CustomerList.size();
+  	int catcher = 0;
+  	cout << "<ADD A CUSTOMER>\n\n";
 
-  catcher = ++CustomerSize;
-  cnode.id = catcher;
-  cin.ignore();
-  cout << "Customer ID: " << catcher << endl;
-  cout << "Name: ";
-  getline(cin,cnode.name);
-  cout << "Address: ";
-  getline(cin,cnode.address);
+  	catcher = ++CustomerSize;
+  	cnode.id = catcher;
+  	cin.ignore();
+  	cout << "Customer ID: " << catcher << endl;
+  	cout << "Name: ";
+  	getline(cin,cnode.name);
+  	cout << "Address: ";
+  	getline(cin,cnode.address);
 
-  CustomerList.push_back(cnode);
-
-  CustomerWriter();
-}
-
-//writes data to Customer.txt
-void functions::CustomerWriter()
-{
-    #if _WIN32
-    ofstream myfile("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\Customers.txt");
-    #else
-    ofstream myfile("/Users/chikashoki/Documents/GitHub/DSA-FMP/Customers.txt");
-    #endif
-	for (miter = CustomerList.begin(); miter != CustomerList.end(); miter++)
-	{
-		myfile<< miter->id << endl;
-		myfile<< miter->name << endl;
-		myfile<< miter->address << "\n\n";
-	}
-	myfile.close();
+  	CustomerList.push_back(cnode);
 }
 
 //Displays all of the Customers
@@ -991,115 +859,209 @@ void functions::DisplayCustomer()
 		}
 }
 
-//Destructor for Customer
-void functions::DelCustomer()
+void functions::FromTextToRentalInfo()
 {
 	string line;
-	int reader = 0;
-
-	CustomerList.clear();
-
-	#if _WIN32
-    ifstream myfile("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\Customers.txt");
+	int cid;
+	int mid;
+	
+  	//determines path at runtime
+    #if _WIN32
+    ifstream myfile("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\Rent.txt");
     #else
-    ifstream myfile("/Users/chikashoki/Documents/GitHub/DSA-FMP/Customers.txt");
+    ifstream myfile("/Users/chikashoki/Documents/GitHub/DSA-FMP/Rent.txt");
     #endif
-	if(myfile.is_open())
-	{
+
+    if(myfile.is_open())
+    {
         int count = 0;
-        	while((getline(myfile,line)) && (reader < 40))
+        while(getline(myfile,line))
         {
-        	reader++;
-        	  switch(count)
+          switch(count)
           {
             case 0:
-              cnode.id = stoi(line);
-            break;
-
-            case 1:
-              cnode.name = line;
+              cid = stoi(line);
             break;
 
             case 2:
-              cnode.address = line;
+              mid = stoi(line);
             break;
-
+      
             default:
             break;
-         	 }
-          if(count < 3)
+          }
+          if(count < 4)
           {
             count++;
           }
           else
           {
             count = 0;
-            CustomerList.push_back(cnode);
+            RentalInfo.push_back(make_pair(cid, mid));
           }
         }
         myfile.close();
-	}
+    }
+    else
+    {
+      cout << "Unable to open file" << endl;
+    }
 
-	#if _WIN32
-    ofstream Myfile("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\Customers.txt");
-    #else
-    ofstream Myfile("/Users/chikashoki/Documents/GitHub/DSA-FMP/Customers.txt");
-    #endif
-
-	while(getline(myfile,line))
-	{
-		line.replace(line.find(reader),reader,"");
-		Myfile<< line <<endl;
-	}
-
-		for (miter = CustomerList.begin(); miter != CustomerList.end(); miter++)
-	{
-		Myfile<< miter->id << endl;
-		Myfile<< miter->name << endl;
-		Myfile<< miter->address << "\n\n";
-	}
-
-	Myfile.close();
+    //end of text to Rental Info function   
 }
 
-//Displays all rented videos of a Customer
-void functions::DisplayRent()
+void functions::DisplayCustomerRentalInfo()
 {
-	bool t = false;
-	int cus;
-	cout<< "All Customers that rented a movie: " << endl;
-	for(miter = CustomerList.begin(); miter != CustomerList.end(); miter++)
-	{
-		if(miter->MovieID)
+	int cid; 
+	int count = 0;
+	cout<< "<<VIDEOS RENTED BY A CUSTOMER>>\n";
+	cout<< "Enter Customer ID: ";
+	cin>> cid; 
+	
+    sort(RentalInfo.begin(), RentalInfo.end());
+    
+ 
+    for(int i = 0; i < RentalInfo.size(); i++)
+    {
+		
+		if(cid == RentalInfo[0].first && count == 0)
 		{
-			cout<< "Customer ID: " << miter->id << "\t" << miter->name <<endl;
-		}
-	}
-
-	  #if _WIN32
-	  ofstream Myfile;
-	  Myfile.open("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\Rent.txt");
-	  #else
-	  ofstream Myfile;
-	  Myfile.open("/Users/chikashoki/Documents/GitHub/DSA-FMP/Rent.txt");
-	  #endif
-
-	  cout<< "Enter Customer ID to be displayed: ";
-	  cin>> cus;
-		for(miter = CustomerList.begin(); miter != CustomerList.end(); miter++)
-		{
-			if(miter->id == cus)
+			cout<< "Customer ID: " << RentalInfo[i].first << endl;
+        	  	
+        	for(miter = CustomerList.begin(); miter != CustomerList.end(); miter++)
 			{
-				cout<< miter->name << endl;
-				cout<< miter->address << endl;
-				cout<<"Movies Rented" << endl;
-				cout<< miter->MovieID << "\t" << miter->title << endl;
-
-				Myfile<< "Customer ID: " << miter->id << endl;
-				Myfile<< "Customer Name: " << miter->name << endl;
-				Myfile<< "Customer Address: " << miter->address << endl;
-				Myfile<< miter->MovieID << "\t" << miter-> title << endl << endl;
+				if(miter->id == RentalInfo[i].first)
+				{
+					cout << "Customer Name: " << miter->name << "\n\n";
+					break;
+				}
+					
+				else
+				{
+					continue;
+				}
 			}
+        	
+			cout<< "Movies Rented: " << endl;  	
+			cout << RentalInfo[i].second << " ";
+				  
+			for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
+			{
+				if (iter->id == RentalInfo[i].second)
+				{
+					cout<< iter->title << endl;
+				        	break;
+				}
+				
+				else
+				{
+					continue;
+				}
+			}
+			count++;
 		}
-		Myfile.close();
+		
+		else if(cid == RentalInfo[i].first && RentalInfo[i].first == RentalInfo[i-1].first)
+		{
+			cout << RentalInfo[i].second << " ";
+				  
+			for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
+			{
+				if (iter->id == RentalInfo[i].second)
+				{
+					cout<< iter->title << endl;
+				        	break;
+				}
+				
+				else
+				{
+					continue;
+				}
+			}
+		}	  
+	}
+	cout<< "\n\n"; 
+}
+
+void functions::UpdateTextFiles()
+{
+	//writes changes into MovieList.txt
+  	#if _WIN32
+  	ofstream myfile;
+  	myfile.open("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\MovieList.txt");
+  	#else
+  	ofstream myfile;
+  	myfile.open("/Users/chikashoki/Documents/GitHub/DSA-FMP/MovieList.txt");
+  	#endif
+		
+  	for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
+  	{
+    	myfile<< iter->id << endl;
+    	myfile<< iter->title << endl;
+    	myfile<< iter->genre << endl;
+    	myfile<< iter->prod << endl;
+    	myfile<< iter->copies << "\n\n";
+  	}
+  	myfile.close();
+
+  	//writes changes into Rent.txt
+ 	#if _WIN32
+ 	ofstream myfile1;
+ 	myfile1.open("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\Rent.txt");
+ 	#else
+ 	ofstream myfile1;
+ 	myfile1.open("/Users/chikashoki/Documents/GitHub/DSA-FMP/Rent.txt");
+ 	#endif
+			  
+	sort(RentalInfo.begin(), RentalInfo.end());
+ 	for(int i = 0; i < RentalInfo.size(); i++)
+ 	{
+   		myfile1 << RentalInfo[i].first << endl;
+
+	   	for(miter = CustomerList.begin(); miter != CustomerList.end(); miter++)
+	   	{
+			if(miter->id == RentalInfo[i].first)
+		   	{
+				myfile1 << miter->name << endl;
+		   	}
+	
+		   	else
+		   	{
+		    	continue;
+		   	}
+	   	}  
+
+       	myfile1 << RentalInfo[i].second << endl;
+  
+       	for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
+       	{
+        	if (iter->id == RentalInfo[i].second)
+          	{
+		    	myfile1<< iter->title << "\n\n";
+        		break;
+			}
+
+			else
+			{
+				continue;
+			}
+   		}
+  
+  		 
+	} 
+    myfile1.close();
+    
+	//Customer.txt
+	#if _WIN32
+    ofstream myfile2("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\Customers.txt");
+    #else
+    ofstream myfile2("/Users/chikashoki/Documents/GitHub/DSA-FMP/Customers.txt");
+    #endif
+	for (miter = CustomerList.begin(); miter != CustomerList.end(); miter++)
+	{
+		myfile2<< miter->id << endl;
+		myfile2<< miter->name << endl;
+		myfile2<< miter->address << "\n\n";
+	}
+	myfile2.close();	
 }

@@ -15,8 +15,9 @@ int main()
 	functions caller;
 
 	//converts text data into linked list
-	caller.FromTextToList();
-	caller.FromTexttoQueue();
+	caller.FromTextToMovieList();
+	caller.FromTextToCustomerList();
+	caller.FromTextToRentalInfo();
 
 	do
 	{//start do
@@ -64,7 +65,7 @@ int main()
 	    break;
 
 	    case 7: //Customer maintenance
-			cout << "[1]Add a Customer\n[2]Customer Info\n[3]Video Rent\nSelect an option: ";
+			cout << "[1]Add a Customer\n[2]Customer Info\n[3]List of Videos Rented by a Customer\nSelect an option: ";
 			cin >> cch;
 
 			switch(cch)
@@ -78,7 +79,7 @@ int main()
 				break;
 
 				case 3: // Videos rented by customer
-				caller.DisplayRent();
+				caller.DisplayCustomerRentalInfo();
 				break;
 
 				default: // error
@@ -89,7 +90,7 @@ int main()
 
 	    case 8:
 	    //call destructor
-	    caller.DelCustomer();
+	    caller.UpdateTextFiles();
 	    return 0;
 	    break;
 
@@ -102,6 +103,7 @@ int main()
 	cout << "Do you want to select another choice?[Y/N]: ";
 	cin >> dec;
 	}while(caller.decision(dec));
-
-  return 0;
+	
+	caller.UpdateTextFiles();
+  	return 0;
 }
