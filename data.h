@@ -919,63 +919,76 @@ void functions::DisplayCustomerRentalInfo()
 
     sort(RentalInfo.begin(), RentalInfo.end());
 
+    if(RentalInfo.empty())
+	{
+		cout<< "This Customer has not rented any Movie as of this moment.\n";
+	}
 
-    for(int i = 0; i < RentalInfo.size(); i++)
-    {
+	else
+	{
+		for(int i = 0; i < RentalInfo.size(); i++)
+	    {
 
-		if(cid == RentalInfo[0].first && count == 0)
-		{
-			cout<< "Customer ID: " << RentalInfo[i].first << endl;
-
-        	for(miter = CustomerList.begin(); miter != CustomerList.end(); miter++)
+			if(cid == RentalInfo[0].first && count == 0)
 			{
-				if(miter->id == RentalInfo[i].first)
+				cout<< "Customer ID: " << RentalInfo[i].first << endl;
+
+	      for(miter = CustomerList.begin(); miter != CustomerList.end(); miter++)
 				{
-					cout << "Customer Name: " << miter->name << "\n\n";
-					break;
+					if(miter->id == RentalInfo[i].first)
+					{
+						cout << "Customer Name: " << miter->name << "\n\n";
+						break;
+					}
+
+					else
+					{
+						continue;
+					}
 				}
 
-				else
+				cout<< "Movies Rented: " << endl;
+				cout << RentalInfo[i].second << " ";
+
+				for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
 				{
-					continue;
+					if (iter->id == RentalInfo[i].second)
+					{
+						cout<< iter->title << endl;
+					        	break;
+					}
+
+					else
+					{
+						continue;
+					}
+				}
+				count++;
+			}
+
+			else if(cid == RentalInfo[i].first && RentalInfo[i].first == RentalInfo[i-1].first)
+			{
+				cout << RentalInfo[i].second << " ";
+
+				for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
+				{
+					if (iter->id == RentalInfo[i].second)
+					{
+						cout<< iter->title << endl;
+					        	break;
+					}
+
+					else
+					{
+						continue;
+					}
 				}
 			}
 
-			cout<< "Movies Rented: " << endl;
-			cout << RentalInfo[i].second << " ";
-
-			for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
+			else
 			{
-				if (iter->id == RentalInfo[i].second)
-				{
-					cout<< iter->title << endl;
-				        	break;
-				}
-
-				else
-				{
-					continue;
-				}
-			}
-			count++;
-		}
-
-		else if(cid == RentalInfo[i].first && RentalInfo[i].first == RentalInfo[i-1].first)
-		{
-			cout << RentalInfo[i].second << " ";
-
-			for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
-			{
-				if (iter->id == RentalInfo[i].second)
-				{
-					cout<< iter->title << endl;
-				        	break;
-				}
-
-				else
-				{
-					continue;
-				}
+				cout<< "This Customer has not rented any Movie as of this moment.\n";
+				break;
 			}
 		}
 	}
@@ -1011,7 +1024,7 @@ void functions::UpdateTextFiles()
  	ofstream myfile1;
  	myfile1.open("/Users/chikashoki/Documents/GitHub/DSA-FMP/Rent.txt");
  	#endif
-
+	
 	sort(RentalInfo.begin(), RentalInfo.end());
  	for(int i = 0; i < RentalInfo.size(); i++)
  	{
