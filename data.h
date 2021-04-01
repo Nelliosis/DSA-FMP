@@ -30,7 +30,7 @@ struct CustomerNode
 {
   int
   		id;
-  		
+
   std::string
         name,
         address;
@@ -40,8 +40,8 @@ struct CustomerNode
 class RentInfo
 {
 	public:
-	  int 
-	  	cid, 
+	  int
+	  	cid,
 	  	mid;
 };
 
@@ -380,7 +380,6 @@ void functions::AddMovie()
 void functions::RentMovie()
 {
 	int cus, s;
-	int i = 0;
 	string name;
 	bool found = false;
 	bool foundc = false;
@@ -392,10 +391,10 @@ void functions::RentMovie()
 	{
 		if(miter->id == cus)
 		{
-			name = miter->name;	
+			name = miter->name;
 			foundc = true;
 		}
-		
+
 		else
 		{
 			continue;
@@ -407,7 +406,7 @@ void functions::RentMovie()
 		cout<< "<<RENT A MOVIE>>\n";
 		cout<< "Enter Movie ID: ";
 		cin>> s;
-		
+
 		for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
 	    {
 		//if the Node ID matches the search ID display movie info
@@ -422,17 +421,17 @@ void functions::RentMovie()
 					cout<< "Production" << setw(11) << ": " << iter->prod << endl;
 					cout<< "Number of Copies" << setw(5) << ": " << iter->copies << endl << endl;
 	          		iter->copies -= 1;
-	          		
+
 	          		cout<< "Movie rented to Customer: \n";
 	          		cout<< "Customer ID: " << cus << "\n";
 	          		cout<< "Customer name: " << name << "\n\n";
 					cout<< "Movie Successfully Rented!\n";
-				
+
 					RentalInfo.push_back(make_pair(cus, s));
 	        		found = true;
 	        		break;
 				}
-	
+
 				else
 				{
 					cout<< "Sorry, the movie you are trying to rent has no copies available as of this moment.\n";
@@ -440,20 +439,20 @@ void functions::RentMovie()
 					break;
 				}
 			}
-	
+
 			else
 			{
 				continue;
 			}
 	    }
 	}
-	
+
 	else
 	{
 		cout<< "ERROR. Please enter valid Customer ID.\n";
 	}
-    
-}	
+
+}
 
 //links copies between customer and movie (opertion: addition)
 void functions::ReturnMovie()
@@ -463,27 +462,27 @@ void functions::ReturnMovie()
 	bool found = false;
 	bool foundc = false;
 	bool foundr = false;
-	
+
 	cout<< "Enter Customer ID: ";
 	cin>> cus;
-	
+
 	cout<< "<<RETURN A MOVIE>>\n";
 	cout<< "Enter Movie ID: ";
 	cin>> s;
-	
+
 	sort(RentalInfo.begin(), RentalInfo.end());
 
 	for(miter = CustomerList.begin(); miter != CustomerList.end(); miter++)
 	{
 		if(miter->id == cus)
 		{
-			name = miter->name;	
+			name = miter->name;
 			foundc = true;
 			break;
 		}
 	}
-	
-	
+
+
 	for(int i = 0; i < RentalInfo.size(); i++)
 	{
 		if(cus == RentalInfo[i].first && s == RentalInfo[i].second)
@@ -492,19 +491,19 @@ void functions::ReturnMovie()
 			break;
 		}
 	}
-	
-	
-	
+
+
+
 	if(foundc == true && foundr == true)
 	{
 		for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
 	    {
 		//if the Node ID matches the search ID display movie info
 	    	if (iter->id == s)
-	        {					  			
+	        {
 	        	it = RentalInfo.begin();
 	 			for(int i = 0; i < RentalInfo.size(); i++)
-				{						
+				{
 					if(RentalInfo[i].first == cus && RentalInfo[i].second == s)
 					{
 						RentalInfo.erase(it);
@@ -513,11 +512,11 @@ void functions::ReturnMovie()
 
 					it++;
 				}
-				
+
 				iter->copies += 1;
 				it = RentalInfo.begin();
 				found = true;
-				
+
 				cout<< endl;
 				cout<< "Customer Return Info: " << "\n\n";
 				cout<< "Customer ID: " << cus << endl;
@@ -527,7 +526,7 @@ void functions::ReturnMovie()
 		        cout<< "Movie Successfully Returned!\n";
 				break;
 			}
-	
+
 			else
 			{
 				continue;
@@ -537,15 +536,15 @@ void functions::ReturnMovie()
 	    if(found == false)
 	    {
 	    	cout<< "Sorry, the movie you are looking for does not exist in our list.\n";
-		}	 		 
-	
+		}
+
 	}
-	
+
 	else if(foundc == false)
 	{
 		cout<< "ERROR. Please enter valid Customer ID.\n";
 	}
-	
+
 	else if(foundc == true && foundr == false)
 	{
 		cout<< "ERROR. This particular Customer has not rented any movies.\n";
@@ -864,7 +863,7 @@ void functions::FromTextToRentalInfo()
 	string line;
 	int cid;
 	int mid;
-	
+
   	//determines path at runtime
     #if _WIN32
     ifstream myfile("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\Rent.txt");
@@ -886,7 +885,7 @@ void functions::FromTextToRentalInfo()
             case 2:
               mid = stoi(line);
             break;
-      
+
             default:
             break;
           }
@@ -907,27 +906,27 @@ void functions::FromTextToRentalInfo()
       cout << "Unable to open file" << endl;
     }
 
-    //end of text to Rental Info function   
+    //end of text to Rental Info function
 }
 
 void functions::DisplayCustomerRentalInfo()
 {
-	int cid; 
+	int cid;
 	int count = 0;
 	cout<< "<<VIDEOS RENTED BY A CUSTOMER>>\n";
 	cout<< "Enter Customer ID: ";
-	cin>> cid; 
-	
+	cin>> cid;
+
     sort(RentalInfo.begin(), RentalInfo.end());
-    
- 
+
+
     for(int i = 0; i < RentalInfo.size(); i++)
     {
-		
+
 		if(cid == RentalInfo[0].first && count == 0)
 		{
 			cout<< "Customer ID: " << RentalInfo[i].first << endl;
-        	  	
+
         	for(miter = CustomerList.begin(); miter != CustomerList.end(); miter++)
 			{
 				if(miter->id == RentalInfo[i].first)
@@ -935,16 +934,16 @@ void functions::DisplayCustomerRentalInfo()
 					cout << "Customer Name: " << miter->name << "\n\n";
 					break;
 				}
-					
+
 				else
 				{
 					continue;
 				}
 			}
-        	
-			cout<< "Movies Rented: " << endl;  	
+
+			cout<< "Movies Rented: " << endl;
 			cout << RentalInfo[i].second << " ";
-				  
+
 			for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
 			{
 				if (iter->id == RentalInfo[i].second)
@@ -952,7 +951,7 @@ void functions::DisplayCustomerRentalInfo()
 					cout<< iter->title << endl;
 				        	break;
 				}
-				
+
 				else
 				{
 					continue;
@@ -960,11 +959,11 @@ void functions::DisplayCustomerRentalInfo()
 			}
 			count++;
 		}
-		
+
 		else if(cid == RentalInfo[i].first && RentalInfo[i].first == RentalInfo[i-1].first)
 		{
 			cout << RentalInfo[i].second << " ";
-				  
+
 			for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
 			{
 				if (iter->id == RentalInfo[i].second)
@@ -972,15 +971,15 @@ void functions::DisplayCustomerRentalInfo()
 					cout<< iter->title << endl;
 				        	break;
 				}
-				
+
 				else
 				{
 					continue;
 				}
 			}
-		}	  
+		}
 	}
-	cout<< "\n\n"; 
+	cout<< "\n\n";
 }
 
 void functions::UpdateTextFiles()
@@ -993,7 +992,7 @@ void functions::UpdateTextFiles()
   	ofstream myfile;
   	myfile.open("/Users/chikashoki/Documents/GitHub/DSA-FMP/MovieList.txt");
   	#endif
-		
+
   	for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
   	{
     	myfile<< iter->id << endl;
@@ -1012,7 +1011,7 @@ void functions::UpdateTextFiles()
  	ofstream myfile1;
  	myfile1.open("/Users/chikashoki/Documents/GitHub/DSA-FMP/Rent.txt");
  	#endif
-			  
+
 	sort(RentalInfo.begin(), RentalInfo.end());
  	for(int i = 0; i < RentalInfo.size(); i++)
  	{
@@ -1024,15 +1023,15 @@ void functions::UpdateTextFiles()
 		   	{
 				myfile1 << miter->name << endl;
 		   	}
-	
+
 		   	else
 		   	{
 		    	continue;
 		   	}
-	   	}  
+	   	}
 
        	myfile1 << RentalInfo[i].second << endl;
-  
+
        	for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
        	{
         	if (iter->id == RentalInfo[i].second)
@@ -1046,11 +1045,11 @@ void functions::UpdateTextFiles()
 				continue;
 			}
    		}
-  
-  		 
-	} 
+
+
+	}
     myfile1.close();
-    
+
 	//Customer.txt
 	#if _WIN32
     ofstream myfile2("C:\\Users\\marbe\\Documents\\github\\DSA-FMP\\Customers.txt");
@@ -1063,5 +1062,5 @@ void functions::UpdateTextFiles()
 		myfile2<< miter->name << endl;
 		myfile2<< miter->address << "\n\n";
 	}
-	myfile2.close();	
+	myfile2.close();
 }

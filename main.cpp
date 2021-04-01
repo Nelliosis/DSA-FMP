@@ -103,7 +103,7 @@ int main()
 	cout << "Do you want to select another choice?[Y/N]: ";
 	cin >> dec;
 	}while(caller.decision(dec));
-	
+
 	caller.UpdateTextFiles();
   	return 0;
 }
