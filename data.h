@@ -83,8 +83,6 @@ class functions
 	  bool searchmov(int n);             //Austin
     void AddCustomer();                //Patrick
     void DisplayCustomer();            //Patrick
-    void traversedCustomer(int m);     //Patrick
-    void DisplayRent();                //Patrick
     void FromTextToRentalInfo();       //Patrick
     void DisplayCustomerRentalInfo();  //Patrick
     void UpdateTextFiles();            //Austin
@@ -404,6 +402,12 @@ void functions::AddMovie()
 		MovieList.insert(iter, node);
 		posnewgenre++;
 	}
+
+  else
+  {
+    cout << "Wrong input.\n\n";
+  }
+
 }
 
 //links copies value between customer and movie (operation: subtraction)
@@ -879,7 +883,7 @@ void functions::AddCustomer()
 void functions::DisplayCustomer()
 {
 	int cus;
-  bool found = false;
+  bool found = true;
 	cout << "<<CUSTOMER INFO>>\n";
 	cout << "Enter Customer ID to be displayed: ";
 	cin >> cus;
@@ -892,6 +896,7 @@ void functions::DisplayCustomer()
 			cout << "Name" << setw(17) << ": " << miter->name << endl;
 			cout << "Address" << setw(14) << ": " << miter->address << endl;
       found = true;
+      break;
 		}
     else
     {
