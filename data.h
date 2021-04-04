@@ -404,6 +404,11 @@ void functions::AddMovie()
 		MovieList.insert(iter, node);
 		posnewgenre++;
 	}
+	
+	else
+	{
+		cout<< "ERROR. Please enter valid choice.\n";
+	}
 }
 
 //links copies value between customer and movie (operation: subtraction)
@@ -493,14 +498,11 @@ void functions::ReturnMovie()
 	string name;
 	bool found = false;
 	bool foundc = false;
+	bool foundcv = false;
 	bool foundr = false;
 
 	cout << "Enter Customer ID: ";
 	cin >> cus;
-
-	cout << "<<RETURN A MOVIE>>\n";
-	cout << "Enter Movie ID: ";
-	cin >> s;
 
 	sort(RentalInfo.begin(), RentalInfo.end());
 
@@ -513,63 +515,76 @@ void functions::ReturnMovie()
 			break;
 		}
 	}
-
-
+	
 	for(int i = 0; i < RentalInfo.size(); i++)
 	{
-		if(cus == RentalInfo[i].first && s == RentalInfo[i].second)
+		if(cus == RentalInfo[i].first)
 		{
-			foundr = true;
+			foundcv = true;
 			break;
 		}
 	}
-
-
-
-	if(foundc == true && foundr == true)
+	
+	if(foundc == true && foundcv == true)
 	{
-		for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
-	    {
-		//if the Node ID matches the search ID display movie info
-	    	if (iter->id == s)
-	        {
-	        	it = RentalInfo.begin();
-	 			for(int i = 0; i < RentalInfo.size(); i++)
-				{
-					if(RentalInfo[i].first == cus && RentalInfo[i].second == s)
-					{
-						RentalInfo.erase(it);
-						break;
-					}
-
-					it++;
-				}
-
-				iter->copies += 1;
-				it = RentalInfo.begin();
-				found = true;
-
-				cout<< endl;
-				cout<< "Customer Return Info: " << "\n\n";
-				cout<< "Customer ID: " << cus << endl;
-				cout<< "Customer Name: " << name << endl;
-				cout<< "Movie ID: " << s << endl;
-				cout<< "Movie Title: " << iter->title << endl;
-		    cout<< "Movie Successfully Returned!\n";
-
+		cout << "<<RETURN A MOVIE>>\n";
+		cout << "Enter Movie ID: ";
+		cin >> s;
+		
+		for(int i = 0; i < RentalInfo.size(); i++)
+		{
+			if(cus == RentalInfo[i].first && s == RentalInfo[i].second)
+			{
+				foundr = true;
 				break;
-			   }
-
-  			 else
-  			 {
-  				continue;
-  			 }
-	    }
-
+			}
+		}
+		
+		if(foundr == true)
+		{
+			for(iter = MovieList.begin(); iter != MovieList.end(); iter++)
+		    {
+			//if the Node ID matches the search ID display movie info
+		    	if (iter->id == s)
+		        {
+		        	it = RentalInfo.begin();
+		 			for(int i = 0; i < RentalInfo.size(); i++)
+					{
+						if(RentalInfo[i].first == cus && RentalInfo[i].second == s)
+						{
+							RentalInfo.erase(it);
+							break;
+						}
+	
+						it++;
+					}
+	
+					iter->copies += 1;
+					it = RentalInfo.begin();
+					found = true;
+	
+					cout<< endl;
+					cout<< "Customer Return Info: " << "\n\n";
+					cout<< "Customer ID: " << cus << endl;
+					cout<< "Customer Name: " << name << endl;
+					cout<< "Movie ID: " << s << endl;
+					cout<< "Movie Title: " << iter->title << endl;
+			    	cout<< "Movie Successfully Returned!\n";
+	
+					break;
+				   }
+	
+	  			 else
+	  			 {
+	  				continue;
+	  			 }
+		    }
+		}
+		
 	    if(found == false)
 	    {
-	    	cout<< "Sorry, the movie you are looking for does not exist in our list.\n";
-		  }
+	    	cout<< "ERROR. It seems like this customer has not rented a Movie with the corresponding Movie ID.\n";
+		}
 
 	}
 
@@ -591,7 +606,7 @@ void functions::displaymovieinfo()
 	cout << "<<MOVIE INFO>>\n";
 	cout << "Enter Movie ID: ";
 	cin >> s;
-
+	
 	if(!searchmov(s))
 	{
 		cout<< "Sorry, the movie you are looking for does not exist in our list.\n";
@@ -891,13 +906,15 @@ void functions::DisplayCustomer()
 			cout << "Customer ID" << setw(10) << ": " << miter->id << endl;
 			cout << "Name" << setw(17) << ": " << miter->name << endl;
 			cout << "Address" << setw(14) << ": " << miter->address << endl;
-      found = true;
+      		found = true;
+      		break;
 		}
-    else
-    {
-      found = false;
-      continue;
-    }
+		
+	    else
+	    {
+	      found = false;
+	      continue;
+	    }
 	}
   if(!found)
   {
@@ -960,16 +977,37 @@ void functions::DisplayCustomerRentalInfo()
 {
 	int cid;
 	int count = 0;
+	bool foundc = false;
 	cout << "<<VIDEOS RENTED BY A CUSTOMER>>\n";
 	cout << "Enter Customer ID: ";
 	cin >> cid;
+	
+	for(miter = CustomerList.begin(); miter != CustomerList.end(); miter++)
+	{
+		if(miter->id == cid)
+		{
+			foundc = true;
+			break;
+		}
 
-  sort(RentalInfo.begin(), RentalInfo.end());
+		else
+		{
+			continue;
+		}
+	}
+	
 
-    if(RentalInfo.empty())
+  	sort(RentalInfo.begin(), RentalInfo.end());
+
+    if(RentalInfo.empty() && foundc == true)
   	{
   		cout<< "This Customer has not rented any Movie as of this moment.\n";
   	}
+  	
+  	else if(foundc == false)
+  	{
+  		cout<< "ERROR. Invalid Customer ID.\n";	
+	}
 
   	else
   	{
