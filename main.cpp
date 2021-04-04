@@ -65,31 +65,31 @@ int main()
 	    break;
 
 	    case 7: //Customer maintenance
-			cout << "[1]Add a Customer\n[2]Customer Info\n[3]List of Videos Rented by a Customer\nSelect an option: ";
-			cin >> cch;
+						cout << "[1]Add a Customer\n[2]Customer Info\n[3]List of Videos Rented by a Customer\nSelect an option: ";
+						cin >> cch;
 
-			switch(cch)
-			{
-				case 1: //add a customer
-				caller.AddCustomer();
-				break;
+						switch(cch)
+						{
+							case 1: //add a customer
+							caller.AddCustomer();
+							break;
 
-				case 2: // Display a customer
-				caller.DisplayCustomer();
-				break;
+							case 2: // Display a customer
+							caller.DisplayCustomer();
+							break;
 
-				case 3: // Videos rented by customer
-				caller.DisplayCustomerRentalInfo();
-				break;
+							case 3: // Videos rented by customer
+							caller.DisplayCustomerRentalInfo();
+							break;
 
-				default: // error
+							default: // error
 
-				break;
-			}
+							break;
+						}
 	    break;
 
 	    case 8:
-	    //call destructor
+	    //call updater if chosen
 	    caller.UpdateTextFiles();
 	    return 0;
 	    break;
@@ -104,6 +104,7 @@ int main()
 	cin >> dec;
 	}while(caller.decision(dec));
 
+	//when case 8 is not chosen, automatically update
 	caller.UpdateTextFiles();
   	return 0;
 }
