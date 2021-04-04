@@ -910,6 +910,7 @@ void functions::DisplayCustomer()
   }
 }
 
+//Gets data from rent.txt and converts them into a vector
 void functions::FromTextToRentalInfo()
 {
 	string line;
@@ -961,6 +962,7 @@ void functions::FromTextToRentalInfo()
     //end of text to Rental Info function
 }
 
+//Displays the vector
 void functions::DisplayCustomerRentalInfo()
 {
 	int cid;
@@ -1047,6 +1049,7 @@ void functions::DisplayCustomerRentalInfo()
 	cout<< "\n\n";
 }
 
+//Updates the three text files
 void functions::UpdateTextFiles()
 {
 	  //writes changes into MovieList.txt
